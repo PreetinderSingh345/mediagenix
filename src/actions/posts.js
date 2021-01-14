@@ -18,9 +18,8 @@ export function fetchPosts() {
         return response.json();
       })
       .then((data) => {
-        // printing the data and dispatching an action to update the posts
-
-        console.log(data);
+        // dispatching an action to update the posts
+        
         dispatch(updatePosts(data.data.posts));
       });
   };

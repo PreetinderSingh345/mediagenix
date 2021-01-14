@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
+import { PostsList } from './index';
 
 // defining the App class
 
 class App extends React.Component {
-
   // fetching the posts just after the component is mounted
 
   componentDidMount() {
@@ -13,8 +13,13 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    return <div>Mediagenix</div>;
+    // getting the posts
+
+    const { posts } = this.props;
+
+    // posts list
+
+    return <PostsList posts={posts} />;
   }
 }
 
