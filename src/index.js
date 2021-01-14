@@ -3,17 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import configStore from './store';
+import { Provider } from 'react-redux';
+
+// defining the store
 
 const store = configStore();
-console.log('store', store);
-console.log('state', store.getState());
 
-// telling react dom to render the App component as the root html element
+// telling react dom to render the App component as the root html element and wrapping the App inside the Provider, so that the App including all its components get access to the store via connect
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
 
   document.getElementById('root')
 );

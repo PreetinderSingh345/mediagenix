@@ -1,11 +1,31 @@
-// defining and exporting the App function
+import React from 'react';
+import { connect } from 'react-redux';
+import { fetchPosts } from '../actions/posts';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Mediagenix</h1>
-    </div>
-  );
+// defining the App class
+
+class App extends React.Component {
+
+  // fetching the posts just after the component is mounted
+
+  componentDidMount() {
+    this.props.dispatch(fetchPosts());
+  }
+
+  render() {
+    console.log(this.props);
+    return <div>Mediagenix</div>;
+  }
 }
 
-export default App;
+// defining the mapStateToProps function, where we specify the data we need as props from the store
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts,
+  };
+}
+
+// exporting the connected App component
+
+export default connect(mapStateToProps)(App);
