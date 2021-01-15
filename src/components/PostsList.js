@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserCircle,
   faThumbsUp,
-  faComment,
+  faComments,  
+  faClock,
 } from '@fortawesome/free-solid-svg-icons';
 // defining and exporting the PostsList class
 
@@ -35,33 +36,36 @@ class PostsList extends React.Component {
                 <div className="post-author-time-container">
                   <div className="post-author">{post.user.name}</div>
 
-                  <div className="post-time">a minute ago</div>
+                  <div className="post-time">
+                    <FontAwesomeIcon icon={faClock} className="time-icon"/>
+                    <span>a minute ago</span> 
+                  </div>
                 </div>
               </div>
 
               {/* post content */}
 
-              <div className="post-content">{post.content}</div>
+              <div className="post-content thin-scrollbar">{post.content}</div>
 
               {/* post actions consisting of post list and comment */}
 
               <div className="post-actions">
-                <div className="post-like">
+                <div className="post-like like-comment">
                   <FontAwesomeIcon
                     icon={faThumbsUp}
                     className="post-like-icon"
                   />
 
-                  <div className="post-like-count">{post.likes.length}</div>
+                  <div className="post-like-count like-comment-count">{post.likes.length}</div>
                 </div>
 
-                <div className="post-comment">
+                <div className="post-comment like-comment">
                   <FontAwesomeIcon
-                    icon={faComment}
+                    icon={faComments}
                     className="post-comment-icon"
                   />
 
-                  <div className="post-comment-count">
+                  <div className="post-comment-count like-comment-count">
                     {post.comments.length}
                   </div>
                 </div>
@@ -70,12 +74,12 @@ class PostsList extends React.Component {
               {/* post comment form consisting of post input */}
 
               <div className="post-comment-form">
-                <input type="text" className="post-input" />
+                <input type="text" placeholder="Comment here..." className="post-comment-input" />
               </div>
 
               {/* post comments list */}
 
-              <div className="post-comments-list">
+              <div className="post-comments-list thin-scrollbar">
                 {/* post comment item */}
 
                 <div className="post-comment-item">
@@ -83,13 +87,13 @@ class PostsList extends React.Component {
 
                   <div className="post-comment-header">
                     <div className="post-comment-author">John</div>
-                    <div className="post-comment-time">an hour ago</div>
-                    <div className="post-comment-likes">22</div>
+                    <div className="post-comment-time post-comment-time-likes">an hour ago</div>
+                    <div className="post-comment-likes post-comment-time-likes">22</div>
                   </div>
 
                   {/* post comment content */}
 
-                  <div className="post-comment-content">a sample comment</div>
+                  <div className="post-comment-content thin-scrollbar">a sample comment</div>
                 </div>
               </div>
             </div>

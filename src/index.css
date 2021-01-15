@@ -3,4 +3,274 @@
 body {
   margin: 0;
   font-family: sans-serif;
+  min-width: 300px;
+}
+
+/* posts list */
+
+#posts-list {
+  padding: 0 10px;
+  margin: 10px;
+  max-height: 96vh;
+  overflow-y: auto;
+  background-color: #e9e5ff;
+  border-radius: 10px 0 0 10px;
+}
+
+/* adjusting the posts list according to the device width */
+
+@media only screen and (max-width: 300px){
+  body #posts-list{
+    max-height: 95vh;
+  }
+}
+
+/* post */
+
+.post {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  margin: 14px 0;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.post:hover {
+  box-shadow: 0 0 4px 4px #cbc2ff;
+}
+
+/* post header */
+
+.post-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* post avatar */
+
+.post-avatar {
+  width: 15%;
+  text-align: center;
+  font-size: 2.4rem;
+  padding: 10px;
+  color: orange;
+}
+
+/* post avatar icon */
+
+.post-avatar-icon {
+  border-radius: 50%;
+  padding: 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.post-avatar-icon:hover {
+  box-shadow: 0 0 2px 2px lightgrey;
+}
+
+/* post author time container */
+
+.post-author-time-container {
+  width: 85%;
+}
+
+/* post author */
+
+.post-author {
+  font-size: 0.9rem;
+  padding: 5px;
+  color: grey;
+}
+
+/* post time */
+
+.post-time {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: darkgrey;
+}
+
+/* time icon */
+
+.time-icon {
+  margin: 0 5px;
+}
+
+/* post content */
+
+.post-content {
+  padding: 5px 10px;
+  text-align: justify;
+  max-height: 100px;
+  word-wrap: break-word;
+  overflow-y: auto;
+  color: darkslategrey;
+}
+
+/* thin scrollbar */
+
+.thin-scrollbar::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+
+/* post actions */
+
+.post-actions {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9rem;
+}
+
+/* like comment */
+
+.like-comment {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 10px;
+  justify-content: center;
+}
+
+/* post like icon */
+
+.post-like-icon {
+  margin-right: 5px;
+  color: lightcoral;
+  transition: color 0.3s ease-in-out;
+}
+
+.post-like-icon:hover {
+  color: rgb(241, 30, 30);
+}
+
+/* post comment icon */
+
+.post-comment-icon {
+  margin-right: 5px;
+  color: lightskyblue;
+  transition: color 0.3s ease-in-out;
+}
+
+.post-comment-icon:hover {
+  color: rgb(60, 186, 236);
+}
+
+/* like comment count */
+
+.like-comment-count {
+  font-size: 0.8rem;
+  color: darkslategrey;
+}
+
+/* post comment form */
+
+.post-comment-form {
+  padding: 5px 10px;
+}
+
+/* post comment input */
+
+.post-comment-input {
+  width: 100%;
+  margin: 0;
+  background-color: rgb(235, 235, 235);
+  border: none;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  outline: none;
+  border-radius: 5px;
+  height: 30px;
+  color: darkslategrey;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.post-comment-input:focus {
+  box-shadow: 0 0 2px 2px lightgrey inset;
+}
+
+/* post comments list */
+
+.post-comments-list {
+  padding: 0 10px;
+  max-height: 205px;
+  overflow-y: auto;
+}
+
+/* post comment item */
+
+.post-comment-item {
+  margin: 10px 0;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.post-comment-item:hover {
+  box-shadow: 0 0 2px 2px lightgrey;
+}
+
+/* post comment header */
+
+.post-comment-header {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9rem;
+}
+
+/* post comment author */
+
+.post-comment-author {
+  padding: 5px 10px;
+  color: grey;
+}
+
+/* post comment time likes */
+
+.post-comment-time-likes {
+  font-size: 0.8rem;
+  padding: 0 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: darkgrey;
+}
+
+/* post comment likes */
+
+.post-comment-likes {
+  color: lightcoral;
+}
+
+/* post comment content */
+
+.post-comment-content {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  max-height: 50px;
+  overflow-y: auto;
+  color: darkslategrey;
+}
+
+/* scrollbar */
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: lightgrey;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: grey;
 }
