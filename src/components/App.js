@@ -2,15 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
-import { PostsList } from './index';
-import { Navbar } from './index';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-
-// sample components to check routing
-
-const Login = () => <div>Login</div>;
-const SignUp = () => <div>SignUp</div>;
-const Home = () => <div>Home</div>;
+import { Home, Navbar, Login, SignUp, Page404, Logout } from './index';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // defining the App class
 
@@ -34,29 +27,26 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <Navbar />
-          {/* <PostsList posts={posts} /> */}
+          {/* showing the first matching component according to the path */}
 
-          {/* list for selecting which component to show */}
+          <Switch>
+            <Route
+              exact={true}
+              path="/"
+              render={(props) => {
+                return (
+                  // returning the Home component and passing to it the Route props and posts
 
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
+                  <Home {...props} posts={posts} />
+                );
+              }}
+            />
 
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-
-            <li>
-              <Link to="/signup">SignUp</Link>
-            </li>
-          </ul>
-
-          {/* showing different components according to the path */}
-
-          <Route exact={true} path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/signup" component={SignUp} />
+            <Route component={Page404} />
+          </Switch>
         </div>
       </Router>
     );
