@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { PostsList } from './index';
+import { Navbar } from './index';
 
 // defining the App class
 
@@ -20,7 +21,12 @@ class App extends React.Component {
 
     // posts list
 
-    return <PostsList posts={posts} />;
+    return (
+      <div className="App">
+        <Navbar/>
+        <PostsList posts={posts} />
+      </div>
+    );
   }
 }
 

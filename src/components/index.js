@@ -1,6 +1,7 @@
 import App from './App';
 import PostsList from './PostsList';
+import Navbar from './Navbar';
 
-// exporting the App and the PostsList component
+// exporting the App, PostsList and Navbar component
 
-export { App, PostsList };
+export { App, PostsList, Navbar };
