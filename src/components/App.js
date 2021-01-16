@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { PostsList } from './index';
@@ -22,6 +23,14 @@ class App extends React.Component {
     return <PostsList posts={posts} />;
   }
 }
+
+// defining the type of props of this App component
+
+App.propTypes = {
+  // defining the posts prop to be a required array
+
+  posts: PropTypes.array.isRequired,
+};
 
 // defining the mapStateToProps function, where we specify the data we need as props from the store
 

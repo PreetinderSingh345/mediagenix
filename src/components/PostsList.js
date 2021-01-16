@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserCircle,
   faThumbsUp,
-  faComments,  
+  faComments,
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
 // defining and exporting the PostsList class
@@ -37,8 +38,8 @@ class PostsList extends React.Component {
                   <div className="post-author">{post.user.name}</div>
 
                   <div className="post-time">
-                    <FontAwesomeIcon icon={faClock} className="time-icon"/>
-                    <span>a minute ago</span> 
+                    <FontAwesomeIcon icon={faClock} className="time-icon" />
+                    <span>a minute ago</span>
                   </div>
                 </div>
               </div>
@@ -56,7 +57,9 @@ class PostsList extends React.Component {
                     className="post-like-icon"
                   />
 
-                  <div className="post-like-count like-comment-count">{post.likes.length}</div>
+                  <div className="post-like-count like-comment-count">
+                    {post.likes.length}
+                  </div>
                 </div>
 
                 <div className="post-comment like-comment">
@@ -74,7 +77,11 @@ class PostsList extends React.Component {
               {/* post comment form consisting of post input */}
 
               <div className="post-comment-form">
-                <input type="text" placeholder="Comment here..." className="post-comment-input" />
+                <input
+                  type="text"
+                  placeholder="Comment here..."
+                  className="post-comment-input"
+                />
               </div>
 
               {/* post comments list */}
@@ -87,13 +94,19 @@ class PostsList extends React.Component {
 
                   <div className="post-comment-header">
                     <div className="post-comment-author">John</div>
-                    <div className="post-comment-time post-comment-time-likes">an hour ago</div>
-                    <div className="post-comment-likes post-comment-time-likes">22</div>
+                    <div className="post-comment-time post-comment-time-likes">
+                      an hour ago
+                    </div>
+                    <div className="post-comment-likes post-comment-time-likes">
+                      22
+                    </div>
                   </div>
 
                   {/* post comment content */}
 
-                  <div className="post-comment-content thin-scrollbar">a sample comment</div>
+                  <div className="post-comment-content thin-scrollbar">
+                    a sample comment
+                  </div>
                 </div>
               </div>
             </div>
@@ -103,5 +116,13 @@ class PostsList extends React.Component {
     );
   }
 }
+
+// defining the type of props of this PostList component
+
+PostsList.propTypes = {
+  // defining the posts prop to be a required array
+
+  posts: PropTypes.array.isRequired,
+};
 
 export default PostsList;
