@@ -4,6 +4,13 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { PostsList } from './index';
 import { Navbar } from './index';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+
+// sample components to check routing
+
+const Login = () => <div>Login</div>;
+const SignUp = () => <div>SignUp</div>;
+const Home = () => <div>Home</div>;
 
 // defining the App class
 
@@ -22,10 +29,36 @@ class App extends React.Component {
     // posts list
 
     return (
-      <div className="App">
-        <Navbar/>
-        <PostsList posts={posts} />
-      </div>
+      // wrapping the App component inside the Router
+
+      <Router>
+        <div className="App">
+          <Navbar />
+          {/* <PostsList posts={posts} /> */}
+
+          {/* list for selecting which component to show */}
+
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+
+            <li>
+              <Link to="/signup">SignUp</Link>
+            </li>
+          </ul>
+
+          {/* showing different components according to the path */}
+
+          <Route exact={true} path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+        </div>
+      </Router>
     );
   }
 }
