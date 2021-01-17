@@ -67,7 +67,7 @@ body {
 #search-container {
   height: 30px;
   background-color: whitesmoke;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
 }
 
 /* search icon */
@@ -92,7 +92,7 @@ body {
   box-sizing: border-box;
   color: darkslategrey;
   background-color: inherit;
-  border-radius: 0 10px 0 0;
+  border-radius: 0 10px 10px 0;
 }
 
 /* search results */
@@ -104,6 +104,10 @@ body {
   background-color: white;
   border: 1px solid lightgrey;
   box-sizing: border-box;
+
+  /* search results are hidden for now */
+
+  opacity: 0;
 }
 
 #search-results:last-child {
@@ -170,11 +174,11 @@ body {
 }
 
 @media only screen and (max-width: 700px) {
-  body .sign-in-out-links{
+  body .sign-in-out-links {
     display: none;
   }
 
-  body .sign-in-out-icons{
+  body .sign-in-out-icons {
     display: inline-block;
   }
 
@@ -468,6 +472,81 @@ body {
   max-height: 50px;
   overflow-y: auto;
   color: darkslategrey;
+}
+
+/* login container */
+
+#login-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* login form */
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50vh;
+  width: 40vw;
+  min-width: 200px;
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+#login-form:hover{
+  box-shadow: 0 0 2px 2px lightgrey;
+}
+
+/* login form heading */
+
+#login-form-heading {
+  color: orangered;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* login input */
+
+.login-input {
+  height: 40px;
+  padding: 0;
+  border: none;
+  outline: none;
+  padding: 2.5px 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: darkslategrey;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.login-input:focus{
+  box-shadow: 0 0 2px 2px inset lightgrey;
+}
+
+/* login button */
+
+#login-button {
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: orange;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+#login-button:hover{
+  box-shadow: 0 0 4px 4px inset darkorange;  
 }
 
 /* scrollbar */
