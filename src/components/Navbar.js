@@ -10,6 +10,7 @@ import {
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import '../assets/css/navbar.css';
 
 // defining and exporting the Navbar class
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../assets/css/loginSignUp.css';
 
 // defining and exporting the Login class
 
@@ -15,10 +16,10 @@ class Login extends React.Component {
 
   // handling the event when the login button is pressed or released
 
-  handleClick = () => {
+  handleClick = (event) => {
     // changing button color to darkslategrey when it is pressed
 
-    let button = document.getElementById('login-button');
+    let button = event.target;
 
     if (this.state.clickCount % 2 == 0) {
       button.style.color = 'darkslategrey';
@@ -37,31 +38,33 @@ class Login extends React.Component {
     return (
       // login container
 
-      <div id="login-container">
+      <div className="login-signup-container">
         {/* login form containing heading, email, password input and login button*/}
 
-        <form id="login-form">
-          <div id="login-form-heading">Login</div>
+        <form className="login-signup-form">
+          <div className="login-signup-form-heading">Login</div>
 
           <input
             type="email"
             placeholder="Email"
             required
-            className="login-input"
+            className="login-signup-input"
           />
 
           <input
             type="password"
             placeholder="Password"
             required
-            className="login-input"
+            className="login-signup-input"
           />
+
+          {/* adding event listeners to listen to the events when the login button is pressed or released */}
 
           <button
             type="submit"
-            id="login-button"
-            onMouseDown={this.handleClick}
-            onMouseUp={this.handleClick}
+            className="login-signup-button"
+            onMouseDown={(event) => this.handleClick(event)}
+            onMouseUp={(event) => this.handleClick(event)}
           >
             Login
           </button>

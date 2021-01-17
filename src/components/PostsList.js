@@ -7,6 +7,8 @@ import {
   faComments,
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
+import '../assets/css/posts.css';
+
 // defining and exporting the PostsList class
 
 class PostsList extends React.Component {
@@ -16,7 +18,7 @@ class PostsList extends React.Component {
     const { posts } = this.props;
 
     console.log(posts);
-    
+
     return (
       // posts list
 

@@ -1,0 +1,74 @@
+/* login container */
+
+.login-signup-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* login form */
+
+.login-signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50vh;
+  width: 40vw;
+  min-width: 200px;
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.login-signup-form:hover {
+  box-shadow: 0 0 2px 2px lightgrey;
+}
+
+/* login form heading */
+
+.login-signup-form-heading {
+  color: orangered;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* login input */
+
+.login-signup-input {
+  height: 40px;
+  padding: 0;
+  border: none;
+  outline: none;
+  padding: 2.5px 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: darkslategrey;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.login-signup-input:focus {
+  box-shadow: 0 0 2px 2px inset lightgrey;
+}
+
+/* login button */
+
+.login-signup-button {
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: orange;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.login-signup-button:hover {
+  box-shadow: 0 0 4px 4px inset darkorange;
+}

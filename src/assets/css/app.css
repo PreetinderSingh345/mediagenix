@@ -1,0 +1,26 @@
+/* body */
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  min-width: 320px;
+}
+
+/* scrollbar */
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: lightgrey;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: grey;
+}

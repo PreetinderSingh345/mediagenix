@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { Home, Navbar, Login, SignUp, Page404, Logout, Profile } from './index';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import '../assets/css/app.css';
 
 // defining the App class
 
