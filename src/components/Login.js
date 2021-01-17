@@ -9,12 +9,14 @@ class Login extends React.Component {
   constructor() {
     super();
 
-    // click count and input references
+    // click count and state(consisting of email and password)
 
     this.clickCount = 0;
 
-    this.emailInputRef = React.createRef();
-    this.passwordInputRef = React.createRef();
+    this.state = {
+      email: '',
+      password: '',
+    };
   }
 
   // handling the event when the login button is pressed or released
@@ -38,8 +40,22 @@ class Login extends React.Component {
   // handling the event when the form is submitted
 
   handleFormSubmit = (event) => {
+    // preventing the default behaviour, setting the state to the new email and password values and printing the state after it has changed
+
     event.preventDefault();
-    console.log(this.emailInputRef, this.passwordInputRef);
+
+    let loginEmailInput = document.getElementById('login-email-input');
+    let loginPasswordInput = document.getElementById('login-password-input');
+
+    this.setState(
+      {
+        email: loginEmailInput.value,
+        password: loginPasswordInput.value,
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   };
 
   render() {
@@ -55,14 +71,12 @@ class Login extends React.Component {
         >
           <div className="login-signup-form-heading">Login</div>
 
-          {/* attaching the refernces to the email and password input, so that they change according to the submitted values */}
-
           <input
             type="email"
             placeholder="Email"
             required
             className="login-signup-input"
-            ref={this.emailInputRef}
+            id="login-email-input"
           />
 
           <input
@@ -70,7 +84,7 @@ class Login extends React.Component {
             placeholder="Password"
             required
             className="login-signup-input"
-            ref={this.passwordInputRef}
+            id="login-password-input"
           />
 
           {/* adding event listeners to listen to the events when the login button is pressed or released */}
