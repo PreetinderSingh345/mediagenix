@@ -6,6 +6,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  min-height: 400px;
 }
 
 /* login form */
@@ -21,6 +22,7 @@
   padding: 10px;
   border-radius: 10px;
   transition: box-shadow 0.3s ease-in-out;
+  min-height: 280px;
 }
 
 .login-signup-form:hover {

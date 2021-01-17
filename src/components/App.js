@@ -16,10 +16,6 @@ class App extends React.Component {
   }
 
   render() {
-    // getting the posts
-
-    const { posts } = this.props;
-
     // posts list
 
     return (
@@ -36,9 +32,9 @@ class App extends React.Component {
               path="/"
               render={(props) => {
                 return (
-                  // returning the Home component and passing to it the Route props and posts
+                  // returning the Home component and passing to it the Route and App props
 
-                  <Home {...props} posts={posts} />
+                  <Home {...props} {...this.props} />
                 );
               }}
             />
@@ -58,16 +54,18 @@ class App extends React.Component {
 // defining the type of props of this App component
 
 App.propTypes = {
-  // defining the posts prop to be a required array
+  // defining the posts and loading props to be a required array and bool respectively
 
   posts: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 // defining the mapStateToProps function, where we specify the data we need as props from the store
 
 function mapStateToProps(state) {
   return {
-    posts: state.posts,
+    posts: state.posts.posts,
+    loading: state.posts.loading,
   };
 }
 

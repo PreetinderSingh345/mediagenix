@@ -5,11 +5,15 @@ import { PostsList } from './index';
 
 class Home extends React.Component {
   render() {
-    // getting the posts
+    // getting the posts and loading value
 
-    const { posts } = this.props;
+    const { posts, loading } = this.props;
 
-    return <PostsList posts={posts} />;
+    // showing the loading text till the posts are fetched
+
+    let component = loading ? <div id="loading">Loading</div> : <PostsList posts={posts} />;
+
+    return component;
   }
 }
 
