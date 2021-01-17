@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
-import { Home, Navbar, Login, SignUp, Page404, Logout } from './index';
+import { Home, Navbar, Login, SignUp, Page404, Logout, Profile } from './index';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // defining the App class
@@ -45,6 +45,7 @@ class App extends React.Component {
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/profile" component={Profile} />
             <Route component={Page404} />
           </Switch>
         </div>

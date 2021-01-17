@@ -61,7 +61,9 @@ class Navbar extends React.Component {
 
         <div id="user-container">
           <div id="user-info">
-            <FontAwesomeIcon icon={faUserCircle} id="user-icon" />
+            <Link to="/profile">
+              <FontAwesomeIcon icon={faUserCircle} id="user-icon" />
+            </Link>
             <span id="user-name">John doe</span>
           </div>
 
