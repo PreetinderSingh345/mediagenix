@@ -9,9 +9,7 @@ class SignUp extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      clickCount: 0,
-    };
+    this.clickCount = 0;
   }
 
   // handling the event when the signup button is pressed or released
@@ -21,17 +19,15 @@ class SignUp extends React.Component {
 
     let button = event.target;
 
-    if (this.state.clickCount % 2 == 0) {
+    if (this.clickCount % 2 == 0) {
       button.style.color = 'darkslategrey';
     } else {
       button.removeAttribute('style');
     }
 
-    this.setState((prevState) => {
-      return {
-        clickCount: prevState.clickCount + 1,
-      };
-    });
+    // incrementing count
+
+    this.clickCount++;
   };
 
   render() {
