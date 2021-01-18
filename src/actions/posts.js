@@ -1,4 +1,6 @@
+import { APIUrls } from '../helpers/urls';
 import { UPDATE_POSTS } from './actionTypes';
+
 
 // defining and exporting the action creators
 
@@ -8,7 +10,7 @@ export function fetchPosts() {
   return (dispatch) => {
     // getting some posts from the below api
 
-    let url = 'http://codeial.com:8000/api/v2/posts?page=1&limit=5';
+    let url = APIUrls.fetchPosts();
 
     fetch(url)
       .then((response) => {
