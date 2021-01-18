@@ -1,7 +1,9 @@
 import React from 'react';
+import { login } from '../actions/auth';
+import { connect } from 'react-redux';
 import '../assets/css/loginSignUp.css';
 
-// defining and exporting the Login class
+// defining the Login class
 
 class Login extends React.Component {
   // defining the constructor function
@@ -40,7 +42,7 @@ class Login extends React.Component {
   // handling the event when the form is submitted
 
   handleFormSubmit = (event) => {
-    // preventing the default behaviour, setting the state to the new email and password values and printing the state after it has changed
+    // preventing the default behaviour, setting the state to the new email and password values 
 
     event.preventDefault();
 
@@ -51,14 +53,18 @@ class Login extends React.Component {
       {
         email: loginEmailInput.value,
         password: loginPasswordInput.value,
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+      });
+
+    const { email, password } = this.state;
+
+    this.props.dispatch(login(email, password));
   };
 
   render() {
+    // getting the needed properties from props
+
+    const { error, inProgress } = this.props.auth;
+
     return (
       // login container
 
@@ -70,6 +76,10 @@ class Login extends React.Component {
           onSubmit={(event) => this.handleFormSubmit(event)}
         >
           <div className="login-signup-form-heading">Login</div>
+
+          {/* showing the error(if there is any) */}
+
+          {error && <div id="login-error-message">{error}</div>}
 
           <input
             type="email"
@@ -89,18 +99,36 @@ class Login extends React.Component {
 
           {/* adding event listeners to listen to the events when the login button is pressed or released */}
 
-          <button
-            type="submit"
-            className="login-signup-button"
-            onMouseDown={(event) => this.handleClick(event)}
-            onMouseUp={(event) => this.handleClick(event)}
-          >
-            Login
-          </button>
+          {/* showing different buttons according to the inProgress value */}
+
+          {inProgress ? (
+            <button type="submit" className="login-signup-button" disabled>
+              Logging in...
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="login-signup-button"
+              onMouseDown={(event) => this.handleClick(event)}
+              onMouseUp={(event) => this.handleClick(event)}
+            >
+              Login
+            </button>
+          )}
         </form>
       </div>
     );
   }
 }
 
-export default Login;
+// defining the map state to props function
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+// exporting the connected Login component
+
+export default connect(mapStateToProps)(Login);

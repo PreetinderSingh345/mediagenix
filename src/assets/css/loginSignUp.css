@@ -9,6 +9,22 @@
   min-height: 400px;
 }
 
+/* login error message */
+
+#login-error-message {
+  min-height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  color: darkred;
+  background-color: rgb(238, 204, 204);
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
 /* login form */
 
 .login-signup-form {
@@ -73,4 +89,8 @@
 
 .login-signup-button:hover {
   box-shadow: 0 0 4px 4px inset darkorange;
+}
+
+.login-signup-button:disabled {
+  cursor: not-allowed;
 }
