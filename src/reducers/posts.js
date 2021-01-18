@@ -1,4 +1,4 @@
-import { UPDATE_POSTS } from '../actions/posts';
+import { UPDATE_POSTS } from '../actions/actionTypes';
 
 // defining the initial posts state
 

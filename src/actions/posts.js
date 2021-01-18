@@ -1,13 +1,10 @@
-// defining and exporting the action types
-
-export const UPDATE_POSTS = 'UPDATE_POSTS';
+import { UPDATE_POSTS } from './actionTypes';
 
 // defining and exporting the action creators
 
 // defining and exporting the fetchPosts function
 
 export function fetchPosts() {
-    
   return (dispatch) => {
     // getting some posts from the below api
 
@@ -19,7 +16,7 @@ export function fetchPosts() {
       })
       .then((data) => {
         // dispatching an action to update the posts
-        
+
         dispatch(updatePosts(data.data.posts));
       });
   };
