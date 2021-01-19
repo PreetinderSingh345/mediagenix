@@ -63,6 +63,10 @@ export function login(email, password) {
         // dispatching an action to save the user if the login request is successful or a login failed action(providing the error message to the action) if the request is not successful
 
         if (data.success) {
+          // storing the jwt provided by the server containing the user details inside the local storage
+
+          localStorage.setItem('token', data.data.token);
+
           // dispatching action to save the user
 
           dispatch(loginSuccess(data.data.user));
@@ -129,6 +133,10 @@ export function signUp(name, email, password, confirmPassword) {
         console.log('data', data);
 
         if (data.success) {
+          // storing the jwt provided by the server containing the user details inside the local storage
+
+          localStorage.setItem('token', data.data.token);          
+
           // dispatching action to register the user
 
           dispatch(signUpSuccess(data.data.user));
