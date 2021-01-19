@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -8,14 +9,17 @@ import {
   faUserCircle,
   faSignInAlt,
   faSignOutAlt,
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import '../assets/css/navbar.css';
 
-// defining and exporting the Navbar class
+// defining the Navbar class
 
 class Navbar extends React.Component {
   render() {
+    const { user, isLoggedIn } = this.props.auth;
+    console.log(this.props);
     return (
       // navbar
 
@@ -45,7 +49,8 @@ class Navbar extends React.Component {
                 icon={faUserCircle}
                 className="search-result-icon"
               />
-              <div className="search-result-name">John doe</div>
+
+              <div className="search-result-name">John Doe</div>
             </div>
 
             <div className="search-result">
@@ -53,7 +58,8 @@ class Navbar extends React.Component {
                 icon={faUserCircle}
                 className="search-result-icon"
               />
-              <div className="search-result-name">John doe</div>
+
+              <div className="search-result-name">JohnDoe</div>
             </div>
           </div>
         </div>
@@ -61,33 +67,55 @@ class Navbar extends React.Component {
         {/* user container containing user information and links */}
 
         <div id="user-container">
-          <div id="user-info">
-            <Link to="/profile">
-              <FontAwesomeIcon icon={faUserCircle} id="user-icon" />
-            </Link>
-            <span id="user-name">John doe</span>
-          </div>
 
-          {/* sign in out container containing links to different pages */}
+          {/* user info container containing user avatar link to its profile(shown when the user is logged in) */}
+
+          {isLoggedIn && (
+            <div id="user-info">
+              <Link to="/profile">
+                <FontAwesomeIcon icon={faUserCircle} id="user-icon" />
+              </Link>
+            </div>
+          )}
+
+          {/* sign in out container containing links to different pages(shown according to whether the user is logged in or not) */}
 
           <div id="sign-in-out-container">
-            <Link to="/login" className="sign-in-out-links">
-              Login
-            </Link>
-            <Link to="/logout" className="sign-in-out-links">
-              logout
-            </Link>
-            <Link to="/signup" className="sign-in-out-links">
-              SignUp
-            </Link>
+            {!isLoggedIn && (
+              <Link to="/login" className="sign-in-out-links">
+                Login
+              </Link>
+            )}
 
-            <Link to="/login" className="sign-in-out-icons">
-              <FontAwesomeIcon icon={faSignInAlt} />
-            </Link>
+            {!isLoggedIn && (
+              <Link to="/signup" className="sign-in-out-links">
+                SignUp
+              </Link>
+            )}
 
-            <Link to="/logout" className="sign-in-out-icons">
-              <FontAwesomeIcon icon={faSignOutAlt} />
-            </Link>
+            {isLoggedIn && (
+              <Link to="/logout" className="sign-in-out-links">
+                Logout
+              </Link>
+            )}
+
+            {!isLoggedIn && (
+              <Link to="/login" className="sign-in-out-icons">
+                <FontAwesomeIcon icon={faSignInAlt} />
+              </Link>
+            )}
+
+            {!isLoggedIn && (
+              <Link to="/signup" className="sign-in-out-icons">
+                <FontAwesomeIcon icon={faUserPlus} />
+              </Link>
+            )}
+
+            {isLoggedIn && (
+              <Link to="/logout" className="sign-in-out-icons">
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -95,4 +123,14 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+// defining the map state to props function
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+// exporting the connected Navbar component
+
+export default connect(mapStateToProps)(Navbar);
