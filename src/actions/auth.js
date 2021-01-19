@@ -1,6 +1,13 @@
 import { APIUrls } from '../helpers/urls';
 import { getFormBody } from '../helpers/utils';
-import { LOGIN_FAIL, LOGIN_START, LOGIN_SUCCESS } from './actionTypes';
+import {
+  LOGIN_FAILED,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  SIGNUP_FAILED,
+  SIGNUP_START,
+  SIGNUP_SUCCESS,
+} from './actionTypes';
 
 // defining and exporting the action creators
 
@@ -16,7 +23,7 @@ export function startLogin() {
 
 export function loginFailed(errorMessage) {
   return {
-    type: LOGIN_FAIL,
+    type: LOGIN_FAILED,
     error: errorMessage,
   };
 }
@@ -34,7 +41,7 @@ export function loginSuccess(user) {
 
 export function login(email, password) {
   return (dispatch) => {
-    // dispatching the above start login action(to set in progress to true)
+    // dispatching the above start login action(to set in progress login to true)
 
     dispatch(startLogin());
 
@@ -53,8 +60,6 @@ export function login(email, password) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data', data);
-
         // dispatching an action to save the user if the login request is successful or a login failed action(providing the error message to the action) if the request is not successful
 
         if (data.success) {
@@ -63,6 +68,72 @@ export function login(email, password) {
           dispatch(loginSuccess(data.data.user));
         } else {
           dispatch(loginFailed(data.message));
+        }
+      });
+  };
+}
+
+// defining and exporting the start sign up function
+
+export function startSignUp() {
+  return {
+    type: SIGNUP_START,
+  };
+}
+
+// defining and exporting the sign up success function
+
+export function signUpSuccess(user) {
+  return {
+    type: SIGNUP_SUCCESS,
+    user: user,
+  };
+}
+
+// defining and exporting the sign up failed function
+
+export function signUpFailed(errorMessage) {
+  return {
+    type: SIGNUP_FAILED,
+    error: errorMessage,
+  };
+}
+// defining and exporting the sign up function
+
+export function signUp(name, email, password, confirmPassword) {
+  return function (dispatch) {
+    // dispatching the above start signup action(to set in progress sign up to true)
+
+    dispatch(startSignUp());
+
+    // making a post request at the below url(default request type of fetch method is GET)
+
+    const url = APIUrls.signup();
+
+    fetch(url, {
+      method: 'POST',
+
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+
+      body: getFormBody({
+        name,
+        email,
+        password,
+        confirm_password: confirmPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // dispatching an action to register the user if the signup request is successful or a signup failed action(providing the error message to the action) if the request is not successful
+
+        console.log('data', data);
+
+        if (data.success) {
+          // dispatching action to register the user
+
+          dispatch(signUpSuccess(data.data.user));
+        } else {
+          dispatch(signUpFailed(data.message));
         }
       });
   };

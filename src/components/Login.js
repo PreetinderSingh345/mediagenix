@@ -42,7 +42,7 @@ class Login extends React.Component {
   // handling the event when the form is submitted
 
   handleFormSubmit = (event) => {
-    // preventing the default behaviour, setting the state to the new email and password values 
+    // preventing the default behaviour, setting the state to the new email, password values and dispatching a login action
 
     event.preventDefault();
 
@@ -53,17 +53,19 @@ class Login extends React.Component {
       {
         email: loginEmailInput.value,
         password: loginPasswordInput.value,
-      });
+      },
+      () => {
+        const { email, password } = this.state;
 
-    const { email, password } = this.state;
-
-    this.props.dispatch(login(email, password));
+        this.props.dispatch(login(email, password));
+      }
+    );
   };
 
   render() {
     // getting the needed properties from props
 
-    const { error, inProgress } = this.props.auth;
+    const { errorLogin, inProgressLogin } = this.props.auth;
 
     return (
       // login container
@@ -79,7 +81,7 @@ class Login extends React.Component {
 
           {/* showing the error(if there is any) */}
 
-          {error && <div id="login-error-message">{error}</div>}
+          {errorLogin && <div id="login-signup-error-message">{errorLogin}</div>}
 
           <input
             type="email"
@@ -99,9 +101,9 @@ class Login extends React.Component {
 
           {/* adding event listeners to listen to the events when the login button is pressed or released */}
 
-          {/* showing different buttons according to the inProgress value */}
+          {/* showing different buttons according to the inProgressLogin value */}
 
-          {inProgress ? (
+          {inProgressLogin ? (
             <button type="submit" className="login-signup-button" disabled>
               Logging in...
             </button>

@@ -9,9 +9,9 @@
   min-height: 400px;
 }
 
-/* login error message */
+/* login signup error message */
 
-#login-error-message {
+#login-signup-error-message {
   min-height: 40px;
   display: flex;
   flex-direction: row;
@@ -23,6 +23,7 @@
   background-color: rgb(238, 204, 204);
   padding: 5px 10px;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 /* login form */
@@ -30,15 +31,13 @@
 .login-signup-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 50vh;
+  justify-content: space-around;  
   width: 40vw;
   min-width: 200px;
-  background-color: whitesmoke;
+  background-color: #f4f2ff;
   padding: 10px;
   border-radius: 10px;
-  transition: box-shadow 0.3s ease-in-out;
-  min-height: 280px;
+  transition: box-shadow 0.3s ease-in-out;  
 }
 
 .login-signup-form:hover {
@@ -52,6 +51,7 @@
   text-align: center;
   font-size: 1.8rem;
   font-weight: bold;
+  margin: 10px 0 20px;
 }
 
 /* login input */
@@ -66,6 +66,7 @@
   border-radius: 5px;
   color: darkslategrey;
   transition: box-shadow 0.15s ease-in-out;
+  margin-bottom: 20px;
 }
 
 .login-signup-input:focus {
@@ -85,6 +86,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
+  margin-bottom: 10px;
 }
 
 .login-signup-button:hover {

@@ -1,7 +1,9 @@
 import React from 'react';
+import { signUp } from '../actions/auth';
+import { connect } from 'react-redux';
 import '../assets/css/loginSignUp.css';
 
-// defining and exporting the SignUp class
+// defining the SignUp class
 
 class SignUp extends React.Component {
   // defining the constructor function
@@ -9,7 +11,16 @@ class SignUp extends React.Component {
   constructor() {
     super();
 
+    // click count and state(consisting of name, email, password and confirm password)
+
     this.clickCount = 0;
+
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    };
   }
 
   // handling the event when the signup button is pressed or released
@@ -30,21 +41,62 @@ class SignUp extends React.Component {
     this.clickCount++;
   };
 
+  // handling the event when the form is submitted
+
+  handleFormSubmit = (event) => {
+    // preventing the default behaviour, setting the state to the new name, email, password, confirm password values and dispatching a signup action
+
+    event.preventDefault();
+
+    let signUpNameInput = document.getElementById('signup-name-input');
+    let signUpEmailInput = document.getElementById('signup-email-input');
+    let signUpPasswordInput = document.getElementById('signup-password-input');
+    let signUpConfirmPasswordInput = document.getElementById(
+      'signup-confirm-password-input'
+    );
+
+    this.setState(
+      {
+        name: signUpNameInput.value,
+        email: signUpEmailInput.value,
+        password: signUpPasswordInput.value,
+        confirmPassword: signUpConfirmPasswordInput.value,
+      },
+      () => {
+        const { name, email, password, confirmPassword } = this.state;
+
+        this.props.dispatch(signUp(name, email, password, confirmPassword));
+      }
+    );
+  };
+
   render() {
+    // getting the needed properties from props
+
+    const { errorSignUp, inProgressSignUp } = this.props.auth;
+
     return (
       // signup container
 
       <div className="login-signup-container">
         {/* signup form containing heading, name, email, password, confirm password input and signup button*/}
 
-        <form className="login-signup-form">
+        <form
+          className="login-signup-form"
+          onSubmit={(event) => this.handleFormSubmit(event)}
+        >
           <div className="login-signup-form-heading">SignUp</div>
+
+          {/* showing the error(if there is any) */}
+
+          {errorSignUp && <div id="login-signup-error-message">{errorSignUp}</div>}
 
           <input
             type="text"
             placeholder="Name"
             required
             className="login-signup-input"
+            id="signup-name-input"
           />
 
           <input
@@ -52,6 +104,7 @@ class SignUp extends React.Component {
             placeholder="Email"
             required
             className="login-signup-input"
+            id="signup-email-input"
           />
 
           <input
@@ -59,6 +112,7 @@ class SignUp extends React.Component {
             placeholder="Password"
             required
             className="login-signup-input"
+            id="signup-password-input"
           />
 
           <input
@@ -66,22 +120,41 @@ class SignUp extends React.Component {
             placeholder="Confirm password"
             required
             className="login-signup-input"
+            id="signup-confirm-password-input"
           />
 
           {/* adding event listeners to listen to the events when the signup button is pressed or released */}
 
-          <button
-            type="submit"
-            className="login-signup-button"
-            onMouseDown={(event) => this.handleClick(event)}
-            onMouseUp={(event) => this.handleClick(event)}
-          >
-            SignUp
-          </button>
+          {/* showing different buttons according to the inProgressSignUp value */}
+
+          {inProgressSignUp ? (
+            <button type="submit" className="login-signup-button" disabled>
+              Signing up...
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="login-signup-button"
+              onMouseDown={(event) => this.handleClick(event)}
+              onMouseUp={(event) => this.handleClick(event)}
+            >
+              Sign Up
+            </button>
+          )}
         </form>
       </div>
     );
   }
 }
 
-export default SignUp;
+// defining the map state to props function
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+// exporting the connected SignUp component
+
+export default connect(mapStateToProps)(SignUp);

@@ -1,14 +1,23 @@
-import { LOGIN_FAIL, LOGIN_START, LOGIN_SUCCESS } from '../actions/actionTypes';
+import {
+  LOGIN_FAILED,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  SIGNUP_FAILED,
+  SIGNUP_START,
+  SIGNUP_SUCCESS,
+} from '../actions/actionTypes';
 
 // defining the initial authentication state
 
 const initialAuthState = {
-  // defining the user object(obtained from the server), error(if any while logging in), is logged in(if the user is logged in or not) and in progress(to disable the login button when it is pressed, till the response comes) properties
+  
 
   user: {},
-  error: null,
+  errorLogin: null,
+  errorSignUp: null,
   isLoggedIn: false,
-  inProgress: false,
+  inProgressLogin: false,
+  inProgressSignUp: false,
 };
 
 // defining and exporting the authentication reducer
@@ -18,24 +27,47 @@ export default function auth(state = initialAuthState, action) {
     case LOGIN_START:
       return {
         ...state,
-        inProgress: true,
-        error: null,
+        inProgressLogin: true,
+        errorLogin: null,
       };
 
     case LOGIN_SUCCESS:
       return {
         ...state,
-        error: null,
+        errorLogin: null,
         user: action.user,
         isLoggedIn: true,
-        inProgress: false,
+        inProgressLogin: false,
       };
 
-    case LOGIN_FAIL:
+    case LOGIN_FAILED:
       return {
         ...state,
-        error: action.error,
-        inProgress: false,
+        errorLogin: action.error,
+        inProgressLogin: false,
+      };
+
+    case SIGNUP_START:
+      return {
+        ...state,
+        inProgressSignUp: true,
+        errorSignUp: null,
+      };
+
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        errorSignUp: null,
+        user: action.user,
+        isLoggedIn: true,
+        inProgressSignUp: false,
+      };
+
+    case SIGNUP_FAILED:
+      return {
+        ...state,
+        errorSignUp: action.error,
+        inProgressSignUp: false,
       };
 
     default:
