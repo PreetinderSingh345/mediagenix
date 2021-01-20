@@ -2,6 +2,7 @@ import { APIUrls } from '../helpers/urls';
 import { getFormBody } from '../helpers/utils';
 import {
   AUTHENTICATE_USER,
+  CLEAR_AUTH_STATE,
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
@@ -167,5 +168,13 @@ export function logout() {
 
   return {
     type: LOGOUT,
+  };
+}
+
+// defining and exporting the clear authentication state function
+
+export function clearAuthState() {
+  return {
+    type: CLEAR_AUTH_STATE,
   };
 }

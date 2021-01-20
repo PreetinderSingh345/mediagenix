@@ -1,6 +1,7 @@
 import React from 'react';
-import { signUp } from '../actions/auth';
+import { clearAuthState, signUp } from '../actions/auth';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import '../assets/css/loginSignUp.css';
 
 // defining the SignUp class
@@ -21,6 +22,12 @@ class SignUp extends React.Component {
       password: '',
       confirmPassword: '',
     };
+  }
+
+  // clearing the authentication state just before the component is going to get destroyed
+
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
   }
 
   // handling the event when the signup button is pressed or released
@@ -73,7 +80,13 @@ class SignUp extends React.Component {
   render() {
     // getting the needed properties from props
 
-    const { errorSignUp, inProgressSignUp } = this.props.auth;
+    const { errorSignUp, inProgressSignUp, isLoggedIn } = this.props.auth;
+
+    // redirecting the user to the home page if it is already logged in(using the Redirect component)
+
+    if (isLoggedIn) {
+      return <Redirect to="/" />;
+    }
 
     return (
       // signup container
@@ -89,7 +102,9 @@ class SignUp extends React.Component {
 
           {/* showing the error(if there is any) */}
 
-          {errorSignUp && <div id="login-signup-error-message">{errorSignUp}</div>}
+          {errorSignUp && (
+            <div id="login-signup-error-message">{errorSignUp}</div>
+          )}
 
           <input
             type="text"
