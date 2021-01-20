@@ -13,13 +13,24 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import '../assets/css/navbar.css';
+import { logout } from '../actions/auth';
 
 // defining the Navbar class
 
 class Navbar extends React.Component {
+  // handling the event when the signout text/icon is clicked
+
+  handleLogoutClick = () => {
+    // dispatching an action to logout the user
+
+    this.props.dispatch(logout());
+  };
+
   render() {
-    const { user, isLoggedIn } = this.props.auth;
-    console.log(this.props);
+    // getting the data from props
+
+    const { isLoggedIn } = this.props.auth;
+
     return (
       // navbar
 
@@ -67,7 +78,6 @@ class Navbar extends React.Component {
         {/* user container containing user information and links */}
 
         <div id="user-container">
-
           {/* user info container containing user avatar link to its profile(shown when the user is logged in) */}
 
           {isLoggedIn && (
@@ -93,10 +103,15 @@ class Navbar extends React.Component {
               </Link>
             )}
 
+            {/* adding handleLogoutClick event listeners to the logout text and icon */}
+
             {isLoggedIn && (
-              <Link to="/logout" className="sign-in-out-links">
+              <span
+                className="sign-in-out-links"
+                onClick={this.handleLogoutClick}
+              >
                 Logout
-              </Link>
+              </span>
             )}
 
             {!isLoggedIn && (
@@ -112,9 +127,12 @@ class Navbar extends React.Component {
             )}
 
             {isLoggedIn && (
-              <Link to="/logout" className="sign-in-out-icons">
+              <span
+                className="sign-in-out-icons"
+                onClick={this.handleLogoutClick}
+              >
                 <FontAwesomeIcon icon={faSignOutAlt} />
-              </Link>
+              </span>
             )}
           </div>
         </div>

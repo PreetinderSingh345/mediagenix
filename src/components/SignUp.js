@@ -30,7 +30,7 @@ class SignUp extends React.Component {
 
     let button = event.target;
 
-    if (this.clickCount % 2 == 0) {
+    if (this.clickCount % 2 === 0) {
       button.style.color = 'darkslategrey';
     } else {
       button.removeAttribute('style');

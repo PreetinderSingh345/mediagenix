@@ -1,6 +1,6 @@
 // defining and exporting the action types
 
-// post action types
+// post action type
 
 export const UPDATE_POSTS = 'UPDATE_POSTS';
 
@@ -19,3 +19,11 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const SIGNUP_START = 'SIGNUP_START';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILED = 'SIGNUP_FAILED';
+
+// authentication action type
+
+export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
+
+// logout action type
+
+export const LOGOUT = 'LOGOUT';

@@ -1,7 +1,9 @@
 import {
+  AUTHENTICATE_USER,
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
+  LOGOUT,
   SIGNUP_FAILED,
   SIGNUP_START,
   SIGNUP_SUCCESS,
@@ -10,8 +12,6 @@ import {
 // defining the initial authentication state
 
 const initialAuthState = {
-  
-
   user: {},
   errorLogin: null,
   errorSignUp: null,
@@ -68,6 +68,20 @@ export default function auth(state = initialAuthState, action) {
         ...state,
         errorSignUp: action.error,
         inProgressSignUp: false,
+      };
+
+    case AUTHENTICATE_USER:
+      return {
+        ...state,
+        user: action.user,
+        isLoggedIn: true,
+      };
+
+    case LOGOUT:      
+      return {
+        ...state,
+        user: {},
+        isLoggedIn: false,
       };
 
     default:

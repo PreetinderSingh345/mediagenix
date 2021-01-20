@@ -1,9 +1,11 @@
 import { APIUrls } from '../helpers/urls';
 import { getFormBody } from '../helpers/utils';
 import {
+  AUTHENTICATE_USER,
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
+  LOGOUT,
   SIGNUP_FAILED,
   SIGNUP_START,
   SIGNUP_SUCCESS,
@@ -135,7 +137,7 @@ export function signUp(name, email, password, confirmPassword) {
         if (data.success) {
           // storing the jwt provided by the server containing the user details inside the local storage
 
-          localStorage.setItem('token', data.data.token);          
+          localStorage.setItem('token', data.data.token);
 
           // dispatching action to register the user
 
@@ -144,5 +146,26 @@ export function signUp(name, email, password, confirmPassword) {
           dispatch(signUpFailed(data.message));
         }
       });
+  };
+}
+
+// defining and exporting the authenticate user function
+
+export function authenticateUser(user) {
+  return {
+    type: AUTHENTICATE_USER,
+    user: user,
+  };
+}
+
+// defining and exporting the logout user function
+
+export function logout() {
+  // removing the jwt from the local storage when the user logs out
+
+  localStorage.removeItem('token');
+
+  return {
+    type: LOGOUT,
   };
 }

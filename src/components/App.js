@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
-import { Home, Navbar, Login, SignUp, Page404, Logout, Profile } from './index';
+import { Home, Navbar, Login, SignUp, Page404, Profile } from './index';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import * as jwtDecode from 'jwt-decode';
 import '../assets/css/app.css';
+import { authenticateUser } from '../actions/auth';
 
 // defining the App class
 
@@ -15,19 +16,26 @@ class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
 
+    // getting the jwt from the local storage
+
     const token = localStorage.getItem('token');
 
     if (token) {
-      // decoding the jwt token
+      // decoding the jwt and dispatching an action to authenticate the user(passing only the name, email and id of the user(we'll save only these properties of the user if it is authenticated))
 
       const user = jwtDecode.default(token);
-    } else {
+
+      this.props.dispatch(
+        authenticateUser({
+          name: user.name,
+          email: user.email,
+          _id: user._id,
+        })
+      );
     }
   }
 
   render() {
-    // posts list
-
     return (
       // wrapping the App component inside the Router
 
@@ -50,7 +58,6 @@ class App extends React.Component {
             />
 
             <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
             <Route component={Page404} />

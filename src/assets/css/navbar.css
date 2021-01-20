@@ -196,13 +196,14 @@
 
 .sign-in-out-links {
   color: yellow;
-  text-decoration: none;  
+  text-decoration: none;
   margin: 4px;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
-.sign-in-out-links:hover{
+.sign-in-out-links:hover {
   color: orange;
 }
 
@@ -214,8 +215,9 @@
   margin: 5px;
   color: yellow;
   transition: color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
-.sign-in-out-icons:hover{
+.sign-in-out-icons:hover {
   color: orange;
 }
