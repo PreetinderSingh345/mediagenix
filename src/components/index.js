@@ -4,10 +4,20 @@ import Navbar from './Navbar';
 import Home from './Home';
 import Login from './Login';
 import SignUp from './SignUp';
-import Page404 from "./Page404";
-import Logout from "./Logout";
-import Profile from "./Profile";
+import Page404 from './Page404';
+import Profile from './Profile';
+import Settings from './Settings';
 
-// exporting the App, PostsList, Navbar, Home, Login, SignUp, Page404, Logout and Profile component
+// exporting the App, PostsList, Navbar, Home, Login, SignUp, Page404, Profile and Settings component
 
-export { App, PostsList, Navbar, Home, Login, SignUp, Page404, Logout, Profile };
+export {
+  App,
+  PostsList,
+  Navbar,
+  Home,
+  Login,
+  SignUp,
+  Page404,
+  Profile,
+  Settings,
+};

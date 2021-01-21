@@ -2,11 +2,43 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
-import { Home, Navbar, Login, SignUp, Page404, Profile } from './index';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  Home,
+  Navbar,
+  Login,
+  SignUp,
+  Page404,
+  Profile,
+  Settings,
+} from './index';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import * as jwtDecode from 'jwt-decode';
 import '../assets/css/app.css';
 import { authenticateUser } from '../actions/auth';
+
+// defining the private route component
+
+const PrivateRoute = (privateRouteProps) => {
+  // getting the data from the props of this private route component
+
+  const { path, component: Component, isLoggedIn } = privateRouteProps;
+
+  // returning the Component(with the Route props) if the user is logged in or redirecting the user to the login page
+
+  return (
+    <Route
+      path={path}
+      render={(props) => {
+        return isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />;
+      }}
+    />
+  );
+};
 
 // defining the App class
 
@@ -36,6 +68,10 @@ class App extends React.Component {
   }
 
   render() {
+    // getting the data from props
+
+    const { isLoggedIn } = this.props.auth;
+
     return (
       // wrapping the App component inside the Router
 
@@ -59,7 +95,21 @@ class App extends React.Component {
 
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/profile" component={Profile} />
+
+            {/* using the private route component to render the Profile and Settings component */}
+
+            <PrivateRoute
+              path="/profile"
+              component={Profile}
+              isLoggedIn={isLoggedIn}
+            />
+
+            <PrivateRoute
+              path="/settings"
+              component={Settings}
+              isLoggedIn={isLoggedIn}
+            />
+
             <Route component={Page404} />
           </Switch>
         </div>
@@ -83,6 +133,7 @@ function mapStateToProps(state) {
   return {
     posts: state.posts.posts,
     loading: state.posts.loading,
+    auth: state.auth,
   };
 }
 

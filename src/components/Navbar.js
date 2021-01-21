@@ -9,11 +9,11 @@ import {
   faUserCircle,
   faSignInAlt,
   faSignOutAlt,
-  faUserPlus,
+  faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import '../assets/css/navbar.css';
 import { logout } from '../actions/auth';
+import '../assets/css/navbar.css';
 
 // defining the Navbar class
 
