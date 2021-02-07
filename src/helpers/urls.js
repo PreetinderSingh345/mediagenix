@@ -1,6 +1,6 @@
 // defining the root part of the apis
 
-const API_ROOT = 'http://codeial.com:8000/api/v2/';
+const API_ROOT = 'http://codeial.codingninjas.com:8000/api/v2/';
 
 // defining and exporting the api urls
 
