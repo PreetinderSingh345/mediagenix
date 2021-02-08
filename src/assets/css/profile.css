@@ -1,0 +1,49 @@
+#profile-container{
+
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;    
+
+}
+
+#profile{
+
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 90vh;    
+    width: 40vw;
+
+}
+
+#profile-img-container{
+
+    height: 150px;
+    width: inherit;    
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+#profile-img{
+
+    height: inherit;
+    width: 150px;
+    border-radius: 50%;
+
+}
+
+.fields-container{
+    border: 1px solid blue;
+}
+
+.field-label{
+    border: 1px solid green;
+}
+
+.field-value{
+    border: 1px solid green;
+}
