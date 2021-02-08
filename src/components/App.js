@@ -20,6 +20,7 @@ import {
 import * as jwtDecode from 'jwt-decode';
 import '../assets/css/app.css';
 import { authenticateUser } from '../actions/auth';
+import { getAuthTokenFromLocalStorage } from '../helpers/utils';
 
 // defining the private route component
 
@@ -63,7 +64,7 @@ class App extends React.Component {
 
     // getting the jwt from the local storage
 
-    const token = localStorage.getItem('token');
+    const token = getAuthTokenFromLocalStorage();
 
     if (token) {
       // decoding the jwt and dispatching an action to authenticate the user(passing only the name, email and id of the user(we'll save only these properties of the user if it is authenticated))

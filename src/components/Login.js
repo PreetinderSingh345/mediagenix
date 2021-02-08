@@ -80,7 +80,7 @@ class Login extends React.Component {
 
     console.log('props : ', this.props);
 
-    // redirecting the user to the page it was trying to access if it is already logged in(using the Redirect component)
+    // redirecting the user to the page it was trying to access if it is already logged in(using the Redirect component) and now when we reload the profile or the settings page, then we're not taken back to the home page
 
     if (isLoggedIn) {
       return <Redirect to={from} />;

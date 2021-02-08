@@ -11,10 +11,16 @@ export function getFormBody(params) {
     let encodedKey = encodeURIComponent(property);
     let encodedValue = encodeURIComponent(params[property]);
 
-    formBody.push(encodedKey+'='+encodedValue);
+    formBody.push(encodedKey + '=' + encodedValue);
   }
 
   // returning the elements of the form body array joined with & in string format
 
   return formBody.join('&');
+}
+
+// defining and exporting the get auth token from local storage function
+
+export function getAuthTokenFromLocalStorage() {
+  return localStorage.getItem('token');
 }

@@ -1,8 +1,10 @@
 import { APIUrls } from '../helpers/urls';
-import { getFormBody } from '../helpers/utils';
+import { getAuthTokenFromLocalStorage, getFormBody } from '../helpers/utils';
 import {
   AUTHENTICATE_USER,
   CLEAR_AUTH_STATE,
+  EDIT_USER_FAILED,
+  EDIT_USER_SUCCESSFUL,
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
@@ -176,5 +178,69 @@ export function logout() {
 export function clearAuthState() {
   return {
     type: CLEAR_AUTH_STATE,
+  };
+}
+
+// defining and exporting the edit user successful function
+
+export function editUserSuccessful(user) {
+  return {
+    type: EDIT_USER_SUCCESSFUL,
+    user,
+  };
+}
+
+// defining and exporting the edit user failed function
+
+export function editUserFailed(error) {
+  return {
+    type: EDIT_USER_FAILED,
+    error,
+  };
+}
+
+// defining and exporting the edit user function
+
+export function editUser(name, password, confirmPassword, userId) {
+  return (dispatch) => {
+    // making a post request at the below url to edit the user
+
+    const url = APIUrls.editProfile();
+
+    fetch(url, {
+      method: 'POST',
+
+      // passing the content type and the jwt bearer token(needed for authorization of the user edit process) inside the headers section
+
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
+      },
+
+      // getting the body part of the post request using the getFormBody function(providing to it the details inside an object)
+
+      body: getFormBody({
+        name,
+        password,
+        confirm_password: confirmPassword,
+        id: userId,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data', data);
+
+        // dispatching an action depending on whether the user is successfully updated or not with the updated user or the error respectively
+
+        if (data.success) {
+          dispatch(editUserSuccessful(data.data.user));
+
+          // updating the jwt token as the user is updated, therefore information used to make the jwt has also been updated
+
+          localStorage.setItem('token', data.data.token);
+        } else {
+          dispatch(editUserFailed(data.message));
+        }
+      });
   };
 }

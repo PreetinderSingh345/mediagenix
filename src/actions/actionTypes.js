@@ -31,3 +31,8 @@ export const LOGOUT = 'LOGOUT';
 // clearing the authentication state action type
 
 export const CLEAR_AUTH_STATE = 'CLEAR_AUTH_STATE';
+
+// edit user action types
+
+export const EDIT_USER_SUCCESSFUL = 'EDIT_USER_SUCCESSFUL';
+export const EDIT_USER_FAILED = 'EDIT_USER_FAILED';
