@@ -34,7 +34,20 @@ const PrivateRoute = (privateRouteProps) => {
     <Route
       path={path}
       render={(props) => {
-        return isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />;
+        return isLoggedIn ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              // providing information via state(which page the user was trying to access) to the component which renders the below path(Login) and this information will be available inside the pathname property, inside location, inside props
+
+              pathname: '/login',
+              state: {
+                from: props.location.pathname,
+              },
+            }}
+          />
+        );
       }}
     />
   );

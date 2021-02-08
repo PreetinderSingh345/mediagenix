@@ -74,10 +74,16 @@ class Login extends React.Component {
 
     const { errorLogin, inProgressLogin, isLoggedIn } = this.props.auth;
 
-    // redirecting the user to the home page if it is already logged in(using the Redirect component)
+    // getting the from value from props and we add a default from property with pathname as home if there is no such property inside props
+
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
+
+    console.log('props : ', this.props);
+
+    // redirecting the user to the page it was trying to access if it is already logged in(using the Redirect component)
 
     if (isLoggedIn) {
-      return <Redirect to="/" />;
+      return <Redirect to={from} />;
     }
 
     return (
