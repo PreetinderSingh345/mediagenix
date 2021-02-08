@@ -66,15 +66,17 @@ class Profile extends React.Component {
           {/* name field container(showing input to change the name in edit mode) */}
 
           <div className="fields-container">
-            <div className="field-label">Name</div>
+            {!editMode && <div className="field-label">Name</div>}
 
             {editMode ? (
               <input
+                className="field-input"
                 type="text"
                 onChange={(event) =>
                   this.handleChange('name', event.target.value)
                 }
                 value={this.state.name}
+                placeholder="Name"
               />
             ) : (
               <div className="field-value">{user.name}</div>
@@ -84,29 +86,29 @@ class Profile extends React.Component {
           {/* showing options to change the password in edit mode */}
 
           {editMode && (
-            <div className="field">
-              <div className="field-label">New password</div>
-
+            <div className="fields-container">
               <input
+                className="field-input"
                 type="password"
                 onChange={(event) =>
                   this.handleChange('password', event.target.value)
                 }
                 value={this.state.password}
+                placeholder="New password"
               />
             </div>
           )}
 
           {editMode && (
-            <div className="field">
-              <div className="field-label">Confirm Password</div>
-
+            <div className="fields-container">
               <input
+                className="field-input"
                 type="password"
                 onChange={(event) =>
                   this.handleChange('confirmPassword', event.target.value)
                 }
                 value={this.state.confirmPassword}
+                placeholder="Confirm password"
               />
             </div>
           )}
@@ -116,6 +118,7 @@ class Profile extends React.Component {
           <div id="buttons-container">
             {editMode ? (
               <button
+                id="save-btn"
                 className="button"
                 onClick={() => this.handleChange('editMode', false)}
               >
@@ -123,6 +126,7 @@ class Profile extends React.Component {
               </button>
             ) : (
               <button
+                id="edit-btn"
                 className="button"
                 onClick={() => this.handleChange('editMode', true)}
               >
@@ -132,6 +136,7 @@ class Profile extends React.Component {
 
             {editMode && (
               <button
+                id="go-back-btn"
                 className="button"
                 onClick={() => this.handleChange('editMode', false)}
               >

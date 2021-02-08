@@ -1,49 +1,142 @@
-#profile-container{
+/* profile container */
 
-    height: 90vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;    
-
+#profile-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
 }
 
-#profile{
+/* profile */
 
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 90vh;    
-    width: 40vw;
-
+#profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 90vh;
+  width: 40vw;
+  min-width: 200px;
+  min-height: 450px;
 }
 
-#profile-img-container{
+/* profile image container */
 
-    height: 150px;
-    width: inherit;    
-    border: 1px solid black;
-    text-align: center;
-
+#profile-img-container {
+  height: 150px;
+  width: inherit;
+  min-width: inherit;
+  text-align: center;
 }
 
-#profile-img{
+/* profile image */
 
-    height: inherit;
-    width: 150px;
-    border-radius: 50%;
-
+#profile-img {
+  height: inherit;
+  width: 150px;
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-.fields-container{
-    border: 1px solid blue;
+#profile-img:hover {
+  box-shadow: 0 0 2px 2px grey;
 }
 
-.field-label{
-    border: 1px solid green;
+/* fields container */
+
+.fields-container {
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-.field-value{
-    border: 1px solid green;
+.fields-container:hover {
+  box-shadow: 0 0 2px 2px inset lightgrey;
+}
+
+/* field label */
+
+.field-label {
+  text-align: center;
+  color: lightgrey;
+}
+
+/* field value */
+
+.field-value {
+  text-align: center;
+  font-weight: bold;
+  color: grey;
+}
+
+/* field input */
+
+.field-input {
+  border: none;
+  outline: none;
+  height: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  color: darkslategrey;
+  border-radius: 5px;
+}
+
+/* buttons container */
+
+#buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* button */
+
+.button {
+  height: 40px;
+  width: 120px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;  
+  width: 50%;
+}
+
+/* edit button */
+
+#edit-btn {
+  background-color: lightblue;
+  width: 100%;
+}
+
+#edit-btn:hover {
+  box-shadow: 0 0 4px 4px inset rgb(152, 215, 236);
+}
+
+/* save button */
+
+#save-btn {
+  background-color: lightgreen;
+  margin-right: 2.5px;
+}
+
+#save-btn:hover {
+  box-shadow: 0 0 4px 4px inset rgb(107, 233, 107);
+}
+
+/* go back button */
+
+#go-back-btn {
+  background-color: lightcoral;
+  margin-left: 2.5px;
+}
+
+#go-back-btn:hover {
+  box-shadow: 0 0 4px 4px inset rgb(231, 103, 103);
 }
