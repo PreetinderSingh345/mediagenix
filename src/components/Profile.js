@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { clearAuthState, editUser } from '../actions/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import '../assets/css/profile.css';
 
 // defining the Profile class
@@ -55,31 +57,31 @@ class Profile extends React.Component {
     const { editMode } = this.state;
 
     return (
-      //   {/* link to the settings page */}
-
-      //   <Link to="/settings">Settings</Link>
-
       // profile container
 
-      <div id="profile-container">
+      <div className="profile-container">
         {/* profile */}
 
-        <div id="profile">
+        <div className="profile">
           {/* profile image container containing the profile image */}
 
-          <div id="profile-img-container">
-            <img
-              id="profile-img"
-              src="https://images.unsplash.com/photo-1580929211634-0e8f1adae279?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8c2lraHxlbnwwfDJ8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
-              alt="user-dp"
-            />
+          <div className="profile-img-container">
+            <FontAwesomeIcon id="profile-img" icon={faUserCircle} />
           </div>
 
           {/* showing a message depending on whether the profile has been successfully updated or not(the successful message will be shown only on success and not all the time as in case of success we're setting error to false and not the default null value) */}
 
-          {error && <div id="error-message" className="profile-edit-message">{error}</div>}
+          {error && (
+            <div id="error-message" className="profile-edit-message">
+              {error}
+            </div>
+          )}
 
-          {error === false && <div id="successful-message" className="profile-edit-message">Profile updated successfully</div>}
+          {error === false && (
+            <div id="successful-message" className="profile-edit-message">
+              Profile updated successfully
+            </div>
+          )}
 
           {/* email(immutable) field container */}
 
@@ -152,8 +154,7 @@ class Profile extends React.Component {
               </button>
             ) : (
               <button
-                id="edit-btn"
-                className="button"
+                className="button edit-btn"
                 onClick={() => this.handleChange('editMode', true)}
               >
                 Edit Profile

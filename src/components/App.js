@@ -21,6 +21,7 @@ import * as jwtDecode from 'jwt-decode';
 import '../assets/css/app.css';
 import { authenticateUser } from '../actions/auth';
 import { getAuthTokenFromLocalStorage } from '../helpers/utils';
+import UserProfile from './UserProfile';
 
 // defining the private route component
 
@@ -121,6 +122,12 @@ class App extends React.Component {
             <PrivateRoute
               path="/settings"
               component={Settings}
+              isLoggedIn={isLoggedIn}
+            />
+
+            <PrivateRoute
+              path="/user/:userId"
+              component={UserProfile}
               isLoggedIn={isLoggedIn}
             />
 

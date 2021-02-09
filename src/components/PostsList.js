@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserCircle,
@@ -31,12 +32,16 @@ class PostsList extends React.Component {
               {/* post header containing post avatar, author and posting time */}
 
               <div className="post-header">
-                <div className="post-avatar">
-                  <FontAwesomeIcon
-                    icon={faUserCircle}
-                    className="post-avatar-icon"
-                  />
-                </div>
+                {/* link to the profile of the user */}
+
+                <Link to="/user">
+                  <div className="post-avatar">
+                    <FontAwesomeIcon
+                      icon={faUserCircle}
+                      className="post-avatar-icon"
+                    />
+                  </div>
+                </Link>
 
                 <div className="post-author-time-container">
                   <div className="post-author">{post.user.name}</div>

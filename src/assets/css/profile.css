@@ -1,6 +1,6 @@
 /* profile container */
 
-#profile-container {
+.profile-container {
   height: 90vh;
   display: flex;
   flex-direction: row;
@@ -11,7 +11,7 @@
 
 /* profile */
 
-#profile {
+.profile {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -23,7 +23,7 @@
 
 /* profile image container */
 
-#profile-img-container {
+.profile-img-container {
   height: 150px;
   width: inherit;
   min-width: inherit;
@@ -37,36 +37,37 @@
   width: 150px;
   border-radius: 50%;
   transition: box-shadow 0.3s ease-in-out;
+  color: orange;
 }
 
 #profile-img:hover {
-  box-shadow: 0 0 2px 2px grey;
+  box-shadow: 0 0 2px 2px lightgrey;
 }
 
 /* profile edit message */
 
-.profile-edit-message{
+.profile-edit-message {
   min-height: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 5px;  
+  border-radius: 5px;
   padding: 5px 10px;
   box-sizing: border-box;
 }
 
 /* error message */
 
-#error-message{
+#error-message {
   color: darkred;
   background-color: rgb(238, 204, 204);
 }
 
 /* successful message */
 
-#successful-message{
+#successful-message {
   color: darkgreen;
   background-color: #c7ffc7;
 }
@@ -132,18 +133,18 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
-  transition: box-shadow 0.3s ease-in-out;  
+  transition: box-shadow 0.3s ease-in-out;
   width: 50%;
 }
 
 /* edit button */
 
-#edit-btn {
+.edit-btn {
   background-color: lightblue;
   width: 100%;
 }
 
-#edit-btn:hover {
+.edit-btn:hover {
   box-shadow: 0 0 4px 4px inset rgb(152, 215, 236);
 }
 
