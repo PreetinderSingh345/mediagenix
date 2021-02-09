@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { clearAuthState, editUser } from '../actions/auth';
 import '../assets/css/profile.css';
 
 // defining the Profile class
@@ -20,6 +21,12 @@ class Profile extends React.Component {
     };
   }
 
+  // clearing the authentication state just before the component is going to get destroyed
+
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
+  }
+
   // handle change function to handle the change in state
 
   handleChange = (fieldName, value) => {
@@ -28,10 +35,23 @@ class Profile extends React.Component {
     });
   };
 
+  // handle save function to save the user's updated details
+
+  handleSave = () => {
+    // getting the data from state and props
+
+    const { name, password, confirmPassword } = this.state;
+    const { user } = this.props.auth;
+
+    // dispatching an action to edit the user and providing to it the user details
+
+    this.props.dispatch(editUser(name, password, confirmPassword, user._id));
+  };
+
   render() {
     // getting the data from props and state
 
-    const { user } = this.props.auth;
+    const { user, error } = this.props.auth;
     const { editMode } = this.state;
 
     return (
@@ -54,6 +74,12 @@ class Profile extends React.Component {
               alt="user-dp"
             />
           </div>
+
+          {/* showing a message depending on whether the profile has been successfully updated or not(the successful message will be shown only on success and not all the time as in case of success we're setting error to false and not the default null value) */}
+
+          {error && <div id="error-message" className="profile-edit-message">{error}</div>}
+
+          {error === false && <div id="successful-message" className="profile-edit-message">Profile updated successfully</div>}
 
           {/* email(immutable) field container */}
 
@@ -120,7 +146,7 @@ class Profile extends React.Component {
               <button
                 id="save-btn"
                 className="button"
-                onClick={() => this.handleChange('editMode', false)}
+                onClick={() => this.handleSave()}
               >
                 Save
               </button>

@@ -1,6 +1,8 @@
 import {
   AUTHENTICATE_USER,
   CLEAR_AUTH_STATE,
+  EDIT_USER_FAILED,
+  EDIT_USER_SUCCESSFUL,
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
@@ -14,8 +16,7 @@ import {
 
 const initialAuthState = {
   user: {},
-  errorLogin: null,
-  errorSignUp: null,
+  error: null,
   isLoggedIn: false,
   inProgressLogin: false,
   inProgressSignUp: false,
@@ -29,13 +30,13 @@ export default function auth(state = initialAuthState, action) {
       return {
         ...state,
         inProgressLogin: true,
-        errorLogin: null,
+        error: null,
       };
 
     case LOGIN_SUCCESS:
       return {
         ...state,
-        errorLogin: null,
+        error: null,
         user: action.user,
         isLoggedIn: true,
         inProgressLogin: false,
@@ -44,7 +45,7 @@ export default function auth(state = initialAuthState, action) {
     case LOGIN_FAILED:
       return {
         ...state,
-        errorLogin: action.error,
+        error: action.error,
         inProgressLogin: false,
       };
 
@@ -52,13 +53,13 @@ export default function auth(state = initialAuthState, action) {
       return {
         ...state,
         inProgressSignUp: true,
-        errorSignUp: null,
+        error: null,
       };
 
     case SIGNUP_SUCCESS:
       return {
         ...state,
-        errorSignUp: null,
+        error: null,
         user: action.user,
         isLoggedIn: true,
         inProgressSignUp: false,
@@ -67,7 +68,7 @@ export default function auth(state = initialAuthState, action) {
     case SIGNUP_FAILED:
       return {
         ...state,
-        errorSignUp: action.error,
+        error: action.error,
         inProgressSignUp: false,
       };
 
@@ -88,10 +89,21 @@ export default function auth(state = initialAuthState, action) {
     case CLEAR_AUTH_STATE:
       return {
         ...state,
-        errorLogin: null,
-        errorSignUp: null,
+        error: null,
       };
 
+    case EDIT_USER_SUCCESSFUL:
+      return {
+        ...state,
+        user: action.user,
+        error: false,
+      };
+
+    case EDIT_USER_FAILED:
+      return {
+        ...state,
+        error: action.error,
+      };
     default:
       return state;
   }

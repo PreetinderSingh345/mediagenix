@@ -80,7 +80,7 @@ class SignUp extends React.Component {
   render() {
     // getting the needed properties from props
 
-    const { errorSignUp, inProgressSignUp, isLoggedIn } = this.props.auth;
+    const { error, inProgressSignUp, isLoggedIn } = this.props.auth;
 
     // redirecting the user to the home page if it is already logged in(using the Redirect component)
 
@@ -102,9 +102,7 @@ class SignUp extends React.Component {
 
           {/* showing the error(if there is any) */}
 
-          {errorSignUp && (
-            <div id="login-signup-error-message">{errorSignUp}</div>
-          )}
+          {error && <div id="login-signup-error-message">{error}</div>}
 
           <input
             type="text"

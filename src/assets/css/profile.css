@@ -43,6 +43,34 @@
   box-shadow: 0 0 2px 2px grey;
 }
 
+/* profile edit message */
+
+.profile-edit-message{
+  min-height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;  
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+/* error message */
+
+#error-message{
+  color: darkred;
+  background-color: rgb(238, 204, 204);
+}
+
+/* successful message */
+
+#successful-message{
+  color: darkgreen;
+  background-color: #c7ffc7;
+}
+
 /* fields container */
 
 .fields-container {

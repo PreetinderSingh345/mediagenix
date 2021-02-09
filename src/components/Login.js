@@ -72,7 +72,7 @@ class Login extends React.Component {
   render() {
     // getting the needed properties from props
 
-    const { errorLogin, inProgressLogin, isLoggedIn } = this.props.auth;
+    const { error, inProgressLogin, isLoggedIn } = this.props.auth;
 
     // getting the from value from props and we add a default from property with pathname as home if there is no such property inside props
 
@@ -100,8 +100,8 @@ class Login extends React.Component {
 
           {/* showing the error(if there is any) */}
 
-          {errorLogin && (
-            <div id="login-signup-error-message">{errorLogin}</div>
+          {error && (
+            <div id="login-signup-error-message">{error}</div>
           )}
 
           <input

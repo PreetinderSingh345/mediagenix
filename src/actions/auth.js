@@ -192,10 +192,10 @@ export function editUserSuccessful(user) {
 
 // defining and exporting the edit user failed function
 
-export function editUserFailed(error) {
+export function editUserFailed(errorMessage) {
   return {
     type: EDIT_USER_FAILED,
-    error,
+    error: errorMessage,
   };
 }
 
@@ -228,16 +228,18 @@ export function editUser(name, password, confirmPassword, userId) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data', data);
+        console.log('edit profile data : ', data);
 
         // dispatching an action depending on whether the user is successfully updated or not with the updated user or the error respectively
 
         if (data.success) {
           dispatch(editUserSuccessful(data.data.user));
 
-          // updating the jwt token as the user is updated, therefore information used to make the jwt has also been updated
+          // updating the jwt token as the user is updated, therefore information used to make the jwt has also been updated(updating only if the new token is not null)
 
-          localStorage.setItem('token', data.data.token);
+          if (data.data.token) {
+            localStorage.setItem('token', data.data.token);
+          }
         } else {
           dispatch(editUserFailed(data.message));
         }
