@@ -34,7 +34,7 @@ class PostsList extends React.Component {
               <div className="post-header">
                 {/* link to the profile of the user */}
 
-                <Link to="/user">
+                <Link to={`/user/${post.user._id}`}>
                   <div className="post-avatar">
                     <FontAwesomeIcon
                       icon={faUserCircle}

@@ -228,8 +228,6 @@ export function editUser(name, password, confirmPassword, userId) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('edit profile data : ', data);
-
         // dispatching an action depending on whether the user is successfully updated or not with the updated user or the error respectively
 
         if (data.success) {
