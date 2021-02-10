@@ -7,6 +7,10 @@ import '../assets/css/friendsList.css';
 
 class FriendsListItem extends React.Component {
   render() {
+    // getting the data from props
+
+    const { friend } = this.props;
+
     return (
       // friends list item containing friend's avatar and email
 
@@ -15,7 +19,7 @@ class FriendsListItem extends React.Component {
           <FontAwesomeIcon icon={faUserCircle} className="friend-avatar-icon" />
         </div>
 
-        <div className="friend-email">demo@demo.com</div>
+        <div className="friend-email">{friend.email}</div>
       </div>
     );
   }

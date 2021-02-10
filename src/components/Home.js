@@ -22,9 +22,9 @@ class Home extends React.Component {
       <div id="home">
         <PostsList posts={posts} />
 
-        {/* showing the user's friend list if the user is logged in */}
+        {/* showing the user's friend list if the user is logged in(passing the friends as props to the FriendList component) */}
 
-        {isLoggedIn && <FriendsList />}
+        {isLoggedIn && <FriendsList friends={this.props.friends} />}
       </div>
     );
   }

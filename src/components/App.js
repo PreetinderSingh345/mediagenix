@@ -22,6 +22,7 @@ import '../assets/css/app.css';
 import { authenticateUser } from '../actions/auth';
 import { getAuthTokenFromLocalStorage } from '../helpers/utils';
 import UserProfile from './UserProfile';
+import { fetchUserFriends } from '../actions/friends';
 
 // defining the private route component
 
@@ -79,6 +80,10 @@ class App extends React.Component {
           _id: user._id,
         })
       );
+
+      // dispatching an action to fetch the user friends(the friends are fetched only when the user is logged in)
+
+      this.props.dispatch(fetchUserFriends());
     }
   }
 
@@ -142,10 +147,12 @@ class App extends React.Component {
 // defining the type of props of this App component
 
 App.propTypes = {
-  // defining the posts and loading props to be a required array and bool respectively
+  // defining the different props to be reuired with different types
 
   posts: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
+  auth: PropTypes.object.isRequired,
+  friends: PropTypes.array.isRequired,
 };
 
 // defining the mapStateToProps function, where we specify the data we need as props from the store
@@ -155,6 +162,7 @@ function mapStateToProps(state) {
     posts: state.posts.posts,
     loading: state.posts.loading,
     auth: state.auth,
+    friends: state.userFriends,
   };
 }
 
