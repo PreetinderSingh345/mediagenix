@@ -1,21 +1,7 @@
-/* loading */
-
-#loading{
-
-  height: 90vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.4rem;
-  color: orangered;
-  font-weight: bold;
-
-}
-
 /* posts list */
 
 #posts-list {
+  width: 100%;
   padding: 0 10px;
   margin: 10px;
   max-height: 86vh;
@@ -23,6 +9,7 @@
   background-color: #e9e5ff;
   border-radius: 10px 0 0 10px;
   min-height: 380px;  
+  box-sizing: border-box;
 }
 
 /* adjusting the posts list according to the device width */

@@ -7,8 +7,9 @@ import SignUp from './SignUp';
 import Page404 from './Page404';
 import Profile from './Profile';
 import Settings from './Settings';
+import FriendsList from './FriendsList';
 
-// exporting the App, PostsList, Navbar, Home, Login, SignUp, Page404, Profile and Settings component
+// exporting the components
 
 export {
   App,
@@ -20,4 +21,5 @@ export {
   Page404,
   Profile,
   Settings,
+  FriendsList,
 };
