@@ -1,5 +1,6 @@
 import React from 'react';
 import { PostsList } from './index';
+import '../assets/css/posts.css';
 
 // defining and exporting Home class
 
@@ -11,9 +12,11 @@ class Home extends React.Component {
 
     // showing the loading text till the posts are fetched
 
-    let component = loading ? <div id="loading">Loading</div> : <PostsList posts={posts} />;
+    if (loading) {
+      return <div id="loading">Loading</div>;
+    }
 
-    return component;
+    return <PostsList posts={posts} />;
   }
 }
 

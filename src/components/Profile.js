@@ -72,7 +72,7 @@ class Profile extends React.Component {
           {/* showing a message depending on whether the profile has been successfully updated or not(the successful message will be shown only on success and not all the time as in case of success we're setting error to false and not the default null value) */}
 
           {error && (
-            <div id="error-message" className="profile-edit-message">
+            <div className="profile-edit-message error-message">
               {error}
             </div>
           )}

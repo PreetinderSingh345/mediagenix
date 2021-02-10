@@ -50,10 +50,10 @@ export function fetchUserProfile(userId) {
 
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Bearer${getAuthTokenFromLocalStorage()}`,
+        Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
       },
     })
-      .then((response) => response.json)
+      .then((response) => response.json())
       .then((data) => {
         // dispatching a success or failure user profile action with the required data i.e. user or error respectively
 

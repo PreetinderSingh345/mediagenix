@@ -14,5 +14,5 @@ export const APIUrls = {
 
   editProfile: () => `${API_ROOT}users/edit`,
 
-  userProfile: (userId) => `${API_ROOT}user/${userId}`,
+  userProfile: (userId) => `${API_ROOT}users/${userId}`,
 };
