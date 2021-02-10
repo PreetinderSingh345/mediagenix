@@ -2,11 +2,13 @@
 
 #friends-list {
   width: 30%;
-  margin: 10px;
-  padding: 10px;
+  margin: 10px;  
   background-color: #e9e5ff;
   border-radius: 10px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
 }
 
 /* friends list heading container */
@@ -15,6 +17,11 @@
   text-align: center;
   color: darkslategrey;
   font-size: 1.2rem;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /* friends list icon */
@@ -22,12 +29,89 @@
 #friends-list-icon {
   font-size: 1.5rem;
   margin: 0 5px;
+  cursor: pointer;
 }
 
-/* adjusting the friends list heading according to the device width */
+/* adjusting the friends list according to the device width */
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 750px) {
   body #friends-list-heading {
     display: none;
   }
+}
+
+@media only screen and (max-width: 500px) {
+  body #friends {
+    display: none;
+  }
+}
+
+/* friends */
+
+#friends {
+  height: 90%;
+  max-height: 76vh;
+  overflow-y: auto;
+  margin: 0 10px 10px 10px;  
+}
+
+#friends::-webkit-scrollbar {
+  width: 4px;    
+}
+
+/* friends list item */
+
+.friends-list-item {
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 10px 10px 0;
+  padding: 5px;
+}
+
+/* friend avatar */
+
+.friend-avatar {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: coral;
+  margin: 0 5px;
+}
+
+/* friend avatar icon */
+
+.friend-avatar-icon {
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.friend-avatar-icon:hover {
+  box-shadow: 0 0 2px 2px lightgrey;
+}
+
+/* friend email */
+
+.friend-email {
+  font-size: 0.8rem;
+  color: grey;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;  
+  box-sizing: border-box;
+}
+
+.friend-email:hover{
+  overflow-x: auto;
+  text-overflow: initial;
+}
+
+.friend-email::-webkit-scrollbar{
+  height: 2px;
 }

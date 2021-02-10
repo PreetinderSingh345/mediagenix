@@ -8,6 +8,7 @@ import Page404 from './Page404';
 import Profile from './Profile';
 import Settings from './Settings';
 import FriendsList from './FriendsList';
+import FriendsListItem from './FriendsListItem';
 
 // exporting the components
 
@@ -22,4 +23,5 @@ export {
   Profile,
   Settings,
   FriendsList,
+  FriendsListItem,
 };

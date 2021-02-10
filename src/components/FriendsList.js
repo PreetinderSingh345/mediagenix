@@ -1,4 +1,5 @@
 import React from 'react';
+import FriendsListItem from './FriendsListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import '../assets/css/friendsList.css';
@@ -18,7 +19,11 @@ class FriendsList extends React.Component {
           <span id="friends-list-heading">Friends List</span>
         </div>
 
-        <div id="friends"></div>
+        {/* friends container containing the friends list items */}
+
+        <div id="friends">
+          <FriendsListItem />
+        </div>
       </div>
     );
   }
