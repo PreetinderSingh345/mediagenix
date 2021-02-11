@@ -110,9 +110,14 @@
 /* search result */
 
 .search-result {
-  display: flex;
+  /* search result is hidden for now */
+
+  display: none;
+
+  /* display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: center; */
+
   padding: 10px 5px;
   transition: background-color 0.3s ease-in-out;
 }

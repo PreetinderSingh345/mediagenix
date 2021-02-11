@@ -78,7 +78,7 @@ class Profile extends React.Component {
           )}
 
           {error === false && (
-            <div id="successful-message" className="profile-edit-message">
+            <div className="profile-edit-message successful-message">
               Profile updated successfully
             </div>
           )}

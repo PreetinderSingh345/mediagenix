@@ -1,6 +1,6 @@
 import { APIUrls } from '../helpers/urls';
 import { getAuthTokenFromLocalStorage } from '../helpers/utils';
-import { FETCH_FRIENDS_SUCCESS } from './actionTypes';
+import { ADD_FRIEND, FETCH_FRIENDS_SUCCESS } from './actionTypes';
 
 // defining and exporting the fetch friends success function
 
@@ -27,5 +27,14 @@ export function fetchUserFriends() {
       .then((data) => {
         dispatch(fetchFriendsSuccess(data.data.friends));
       });
+  };
+}
+
+// defining and exporting the addFriend function
+
+export function addFriend(friend) {
+  return {
+    type: ADD_FRIEND,
+    friend,
   };
 }

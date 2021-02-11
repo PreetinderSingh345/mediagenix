@@ -80,7 +80,7 @@
 
 /* successful message */
 
-#successful-message {
+.successful-message {
   color: darkgreen;
   background-color: #c7ffc7;
 }
