@@ -6,7 +6,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import '../assets/css/profile.css';
 import { APIUrls } from '../helpers/urls';
 import { getAuthTokenFromLocalStorage } from '../helpers/utils';
-import { addFriend } from '../actions/friends';
+import { addFriend, removeFriend } from '../actions/friends';
 
 // defining the User Profile class
 
@@ -16,10 +16,11 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props);
 
-    // defining the state containing success and error variables
+    // defining the state
 
     this.state = {
       success: null,
+      successMessage: '',
       error: null,
     };
   }
@@ -38,16 +39,24 @@ class UserProfile extends React.Component {
     }
   }
 
-  // handleAddFriendClick function(asynchronous function as it contains some asynchronous statement) to add a friend
+  // handleFriendClick function(asynchronous function as it contains some asynchronous statements) to add or remove a friend
 
-  handleAddFriendClick = async () => {
+  handleFriendClick = async (add) => {
     // getting the data from props
 
     const { userId } = this.props.match.params;
 
     // making a post request with the below options, at the below url
 
-    const url = APIUrls.addFriend(userId);
+    let url = null;
+
+    // getting the url depending on whether the user is adding or removing the friend
+
+    if (add) {
+      url = APIUrls.addFriend(userId);
+    } else {
+      url = APIUrls.removeFriend(userId);
+    }
 
     const options = {
       method: 'POST',
@@ -67,11 +76,16 @@ class UserProfile extends React.Component {
     if (data.success) {
       this.setState({
         success: true,
+        successMessage: data.message,
       });
 
-      // dispatching an action to add the friend
+      // dispatching an action to add or remove the friend
 
-      this.props.dispatch(addFriend(data.data.friendship));
+      if (add) {
+        this.props.dispatch(addFriend(data.data.friendship));
+      } else {
+        this.props.dispatch(removeFriend(userId));
+      }
     } else {
       this.setState({
         success: false,
@@ -96,9 +110,10 @@ class UserProfile extends React.Component {
   };
 
   render() {
-    // getting the data from props
+    // getting the data from props and state
 
     const { user, inProgress: loading, error } = this.props.userProfile;
+    const { successMessage } = this.state;
 
     const isUserFriend = this.checkIfUserIsFriend();
 
@@ -133,7 +148,7 @@ class UserProfile extends React.Component {
               id="friend-added"
               className="profile-edit-message successful-message"
             >
-              Friend added successfully
+              {successMessage}
             </div>
           )}
 
@@ -158,11 +173,17 @@ class UserProfile extends React.Component {
 
           {!error ? (
             isUserFriend ? (
-              <button className="button edit-btn">Remove Friend</button>
+              <button
+                id="remove-friend-btn"
+                className="button"
+                onClick={() => this.handleFriendClick(false)}
+              >
+                Remove Friend
+              </button>
             ) : (
               <button
                 className="button edit-btn"
-                onClick={() => this.handleAddFriendClick()}
+                onClick={() => this.handleFriendClick(true)}
               >
                 Add Friend
               </button>

@@ -161,6 +161,17 @@
   box-shadow: 0 0 4px 4px inset rgb(152, 215, 236);
 }
 
+/* remove friend button */
+
+#remove-friend-btn {
+  background-color: lightcoral;
+  width: 100%;
+}
+
+#remove-friend-btn:hover {
+  box-shadow: 0 0 4px 4px inset rgb(231, 103, 103);
+}
+
 /* save button */
 
 #save-btn {

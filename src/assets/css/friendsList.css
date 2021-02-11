@@ -2,13 +2,13 @@
 
 #friends-list {
   width: 30%;
-  margin: 10px;  
+  margin: 10px;
   background-color: #e9e5ff;
   border-radius: 10px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
 
 /* friends list heading container */
@@ -52,16 +52,16 @@
   height: 90%;
   max-height: 76vh;
   overflow-y: auto;
-  margin: 0 10px 10px 10px;  
+  margin: 0 10px 10px 10px;
 }
 
 #friends::-webkit-scrollbar {
-  width: 4px;    
+  width: 4px;
 }
 
 /* no friends message */
 
-#no-friends-message{  
+#no-friends-message {
   text-align: center;
   font-size: 1.1rem;
   color: darkslategrey;
@@ -75,8 +75,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0 10px 10px 0;
+  margin: 10px 5px;
   padding: 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.friends-list-item:hover {
+  box-shadow: 0 0 2px 2px #cbc2ff;
 }
 
 /* friend avatar */
@@ -111,15 +116,15 @@
   color: grey;
   overflow-x: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;  
+  text-overflow: ellipsis;
   box-sizing: border-box;
 }
 
-.friend-email:hover{
+.friend-email:hover {
   overflow-x: auto;
   text-overflow: initial;
 }
 
-.friend-email::-webkit-scrollbar{
+.friend-email::-webkit-scrollbar {
   height: 2px;
 }

@@ -31,7 +31,7 @@ class FriendsList extends React.Component {
           {friends.length == 0 ? (
             <div id="no-friends-message">No friends</div>
           ) : (
-            friends.map((friend) => <FriendsListItem friend={friend} />)
+            friends.map((friend, index) => <FriendsListItem friend={friend} key={index}/>)
           )}
         </div>
       </div>
