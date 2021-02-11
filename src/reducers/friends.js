@@ -4,24 +4,36 @@ import {
   REMOVE_FRIEND,
 } from '../actions/actionTypes';
 
-// initial friends state
+// defining the initial friends state
 
-const initialFriendsState = [];
+const initialFriendsState = {
+  friends: [],
+  loading: true,
+};
 
 // defining and exporting the userFriends reducer
 
 export default function userFriends(state = initialFriendsState, action) {
   switch (action.type) {
     case FETCH_FRIENDS_SUCCESS:
-      return [...action.friends];
+      return {
+        friends: action.friends,
+        loading: false,
+      };
 
     case ADD_FRIEND:
-      return state.concat(action.friend);
+      return {
+        ...state,
+        friends: state.friends.concat(action.friend),
+      };
 
     case REMOVE_FRIEND:
-      return state.filter((friend) => (
-        friend.to_user._id !== action.userId
-      ));
+      return {
+        ...state,
+        friends: state.friends.filter(
+          (friend) => friend.to_user._id !== action.userId
+        ),
+      };
 
     default:
       return state;

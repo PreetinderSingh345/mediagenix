@@ -8,13 +8,14 @@ class Home extends React.Component {
   render() {
     // getting the data from props
 
-    const { posts, loading } = this.props;
+    const { posts, loading: postsLoading } = this.props.posts;
+    const { loading: friendsLoading } = this.props.friends;
 
     const { isLoggedIn } = this.props.auth;
 
-    // showing the loading text till the posts are fetched
+    // showing the loading text till the posts and friends are fetched
 
-    if (loading) {
+    if (postsLoading || friendsLoading) {
       return <div id="loading">Loading</div>;
     }
 
@@ -24,7 +25,7 @@ class Home extends React.Component {
 
         {/* showing the user's friend list if the user is logged in(passing the friends as props to the FriendList component) */}
 
-        {isLoggedIn && <FriendsList friends={this.props.friends} />}
+        {isLoggedIn && <FriendsList friends={this.props.friends.friends} />}
       </div>
     );
   }

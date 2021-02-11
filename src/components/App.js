@@ -149,18 +149,16 @@ class App extends React.Component {
 App.propTypes = {
   // defining the different props to be reuired with different types
 
-  posts: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
+  posts: PropTypes.object.isRequired,  
   auth: PropTypes.object.isRequired,
-  friends: PropTypes.array.isRequired,
+  friends: PropTypes.object.isRequired,
 };
 
 // defining the mapStateToProps function, where we specify the data we need as props from the store
 
 function mapStateToProps(state) {
   return {
-    posts: state.posts.posts,
-    loading: state.posts.loading,
+    posts: state.posts,
     auth: state.auth,
     friends: state.userFriends,
   };

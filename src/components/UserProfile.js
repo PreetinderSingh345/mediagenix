@@ -21,7 +21,7 @@ class UserProfile extends React.Component {
     this.state = {
       success: null,
       successMessage: '',
-      error: null,
+      error: null,      
     };
   }
 
@@ -99,7 +99,7 @@ class UserProfile extends React.Component {
   checkIfUserIsFriend = () => {
     // getting the data from props
 
-    const { match, userFriends: friends } = this.props;
+    const { match, friends } = this.props;
     const { userId } = match.params;
 
     // finding the index of the user whose profile is being viewed inside the array of the logged in user's friend's ids and returning whether the user is a friend or not
@@ -169,7 +169,7 @@ class UserProfile extends React.Component {
             <div className="field-value">{user.email}</div>
           </div>
 
-          {/* add/remove friend button(shown only when the user has been successfully fetched) */}
+          {/* add/remove friend button(shown only when the user has been successfully fetched) and clicks on them are handled by the handleFriendClick event listener */}
 
           {!error ? (
             isUserFriend ? (
@@ -202,7 +202,7 @@ class UserProfile extends React.Component {
 function mapStateToProps({ userProfile, userFriends }) {
   return {
     userProfile,
-    userFriends,
+    friends: userFriends.friends,
   };
 }
 
