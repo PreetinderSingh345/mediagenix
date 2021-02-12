@@ -28,7 +28,7 @@ class FriendsList extends React.Component {
         <div id="friends">          
           {/* showing the no friends message or the user's friends(rendered as FriendsListItem and we pass to each item the friend as props) depending on the number of friends */}
 
-          {friends.length == 0 ? (
+          {friends.length === 0 ? (
             <div id="no-friends-message">No friends</div>
           ) : (
             friends.map((friend, index) => (

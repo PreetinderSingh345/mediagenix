@@ -1,4 +1,4 @@
-import { UPDATE_POSTS } from '../actions/actionTypes';
+import { ADD_POST, UPDATE_POSTS } from '../actions/actionTypes';
 
 // defining the initial posts state
 
@@ -15,6 +15,12 @@ export default function posts(state = initialPostsState, action) {
       return {
         posts: action.posts,
         loading: false,
+      };
+
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [action.post, ...state.posts],
       };
 
     default:

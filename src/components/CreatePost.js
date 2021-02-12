@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createPost } from '../actions/posts';
 
-// defining and exporting the CreatePost class
+// defining the CreatePost class
 
 class CreatePost extends React.Component {
   // defining the constructor function
@@ -27,6 +29,10 @@ class CreatePost extends React.Component {
 
   handleClick = () => {
     // dispatch an action to post the content
+
+    const { content } = this.state;
+
+    this.props.dispatch(createPost(content));
   };
 
   render() {
@@ -53,4 +59,6 @@ class CreatePost extends React.Component {
   }
 }
 
-export default CreatePost;
+// exporting the connected CreatePost component(with no mapStateToProps function as only dispatch is needed from the store)
+
+export default connect()(CreatePost);
