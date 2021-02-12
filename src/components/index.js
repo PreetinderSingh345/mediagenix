@@ -9,6 +9,8 @@ import Profile from './Profile';
 import Settings from './Settings';
 import FriendsList from './FriendsList';
 import FriendsListItem from './FriendsListItem';
+import Post from './Post';
+import Comment from './Comment';
 
 // exporting the components
 
@@ -24,4 +26,6 @@ export {
   Settings,
   FriendsList,
   FriendsListItem,
+  Post,
+  Comment,
 };

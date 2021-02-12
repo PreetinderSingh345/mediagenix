@@ -28,9 +28,11 @@ class CreatePost extends React.Component {
   // function to handle click on the post button
 
   handleClick = () => {
-    // dispatch an action to post the content
+    // getting the data from state
 
     const { content } = this.state;
+
+    // dispatch an action to post the content
 
     this.props.dispatch(createPost(content));
   };

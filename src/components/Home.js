@@ -13,15 +13,21 @@ class Home extends React.Component {
 
     const { isLoggedIn } = this.props.auth;
 
-    // showing the loading text till the posts and friends are fetched
+    // showing the loading text till the posts are fetched, if the user is not logged in and showing it till the friends too are fethced, if the user is logged in
 
-    if (postsLoading || friendsLoading) {
-      return <div id="loading">Loading</div>;
+    if (isLoggedIn) {
+      if (postsLoading || friendsLoading) {
+        return <div id="loading">Loading</div>;
+      }
+    } else {
+      if (postsLoading) {
+        return <div id="loading">Loading</div>;
+      }
     }
 
     return (
       <div id="home">
-        <PostsList posts={posts} />
+        <PostsList posts={posts} isLoggedIn={isLoggedIn} />
 
         {/* showing the user's friend list if the user is logged in(passing the friends as props to the FriendList component) */}
 

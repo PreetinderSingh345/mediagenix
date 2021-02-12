@@ -1,8 +1,9 @@
 // defining and exporting the action types
 
-// post action type
+// post action types
 
 export const UPDATE_POSTS = 'UPDATE_POSTS';
+export const ADD_POST = 'ADD_POST';
 
 // login action types
 
@@ -49,6 +50,6 @@ export const FETCH_FRIENDS_SUCCESS = 'FETCH_FRIENDS_SUCCESS';
 export const ADD_FRIEND = 'ADD_FRIEND';
 export const REMOVE_FRIEND = 'REMOVE_FRIEND';
 
-// post action type
+// comment action type
 
-export const ADD_POST = 'ADD_POST';
+export const ADD_COMMENT = 'ADD_COMMENT';
