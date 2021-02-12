@@ -19,7 +19,7 @@ class CreatePost extends React.Component {
 
   handleChange = (event) => {
     this.setState({
-      content: event.targer.value,
+      content: event.target.value,
     });
   };
 
@@ -31,13 +31,11 @@ class CreatePost extends React.Component {
 
   render() {
     return (
-      // post containing textarea, to take post input and a post button, to post the content
+      // create post containing textarea, to take post input and a post button, to post the content
 
-      <div id="post">
+      <div id="create-post">
         <textarea
-          id="post-input"
-          cols="30"
-          rows="10"
+          id="create-post-input"
           value={this.state.content}
           placeholder="Have something in your mind, post here..."
           // calling the handleChange event listener on the change of text area content
