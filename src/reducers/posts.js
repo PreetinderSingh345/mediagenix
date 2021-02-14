@@ -1,4 +1,10 @@
-import { ADD_COMMENT, ADD_POST, UPDATE_POSTS } from '../actions/actionTypes';
+import {
+  ADD_COMMENT,
+  ADD_POST,
+  UPDATE_COMMENT_LIKE,
+  UPDATE_POSTS,
+  UPDATE_POST_LIKE,
+} from '../actions/actionTypes';
 
 // defining the initial posts state
 
@@ -43,6 +49,30 @@ export default function posts(state = initialPostsState, action) {
         ...state,
         posts: newPosts,
       };
+
+    case UPDATE_POST_LIKE:
+      // adding the id of the user who liked the post, to the post's like array
+
+      const updatedPosts = state.posts.map((post) => {
+        if (post._id === action.postId) {
+          return {
+            ...post,
+            likes: [...post.likes, action.userId],
+          };
+        }
+
+        return post;
+      });
+
+      // returning the state object with the new posts array
+
+      return {
+        ...state,
+        posts: updatedPosts,
+      };
+
+    case UPDATE_COMMENT_LIKE:
+    // case to be handled later
 
     default:
       return state;

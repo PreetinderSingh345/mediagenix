@@ -43,9 +43,36 @@ class Post extends React.Component {
     const { _id: postId } = this.props.post;
     const { content } = this.state;
 
+    // returning if there is no content
+
+    if (content === '') {
+      return;
+    }
+
     // dispatching an action to create a comment(passing to it the commment content and the id of the post for which the comment is being made)
 
     this.props.dispatch(createComment(content, postId));
+  };
+
+  // function to handle the case when the enter key is pressed to post a comment
+
+  handleKeyPress = (event) => {
+    // getting the data from props and state
+
+    const { _id: postId } = this.props.post;
+    const { content } = this.state;
+
+    // returning if there is no content
+
+    if (content === '') {
+      return;
+    }
+
+    // dispatching an action to create a comment when the enter key is pressed
+
+    if (event.key === 'Enter') {
+      this.props.dispatch(createComment(content, postId));
+    }
   };
 
   render() {
@@ -124,6 +151,7 @@ class Post extends React.Component {
               className="post-comment-input"
               value={this.state.content}
               onChange={(event) => this.handleChange(event)}
+              onKeyPress={(event) => this.handleKeyPress(event)}
             />
 
             <button

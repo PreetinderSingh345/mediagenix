@@ -27,4 +27,9 @@ export const APIUrls = {
   createPost: () => `${API_ROOT}posts/create`,
 
   createComment: () => `${API_ROOT}comments`,
+
+  // using a commmon toggle like function for api calls for liking a post/comment
+
+  toggleLike: (id, likeType) =>
+    `${API_ROOT}likes/toggle?likeable_id=${id}&likeable_type=${likeType}`,
 };

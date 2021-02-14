@@ -4,6 +4,7 @@
 
 export const UPDATE_POSTS = 'UPDATE_POSTS';
 export const ADD_POST = 'ADD_POST';
+export const UPDATE_POST_LIKE = 'UPDATE_POST_LIKE';
 
 // login action types
 
@@ -53,3 +54,4 @@ export const REMOVE_FRIEND = 'REMOVE_FRIEND';
 // comment action type
 
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const UPDATE_COMMENT_LIKE = 'UPDATE_COMMENT_LIKE';

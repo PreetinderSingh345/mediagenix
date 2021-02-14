@@ -1,5 +1,11 @@
 import { APIUrls } from '../helpers/urls';
-import { ADD_COMMENT, ADD_POST, UPDATE_POSTS } from './actionTypes';
+import {
+  ADD_COMMENT,
+  ADD_POST,
+  UPDATE_COMMENT_LIKE,
+  UPDATE_POSTS,
+  UPDATE_POST_LIKE,
+} from './actionTypes';
 import { getAuthTokenFromLocalStorage, getFormBody } from '../helpers/utils';
 
 // defining and exporting the action creators
@@ -121,5 +127,60 @@ export function createComment(content, postId) {
           dispatch(addComment(data.data.comment, postId));
         }
       });
+  };
+}
+
+// defining and exporting the add like to store function(will be used for both post and comment likes) and we pass to it the id(of post/comment), likeType(post/comment like) and the user id
+
+export function addLikeToStore(id, likeType, userId) {
+  return (dispatch) => {
+    // dispatching a post request at the below url to like a post/comment
+
+    const url = APIUrls.toggleLike(id, likeType);
+
+    const options = {
+      method: 'POST',
+
+      // sending headers(consisting of content type and authorization(for verification of making of comment by a logged in user) and body(obtained from the getFormBody function comprising of the content and post id))
+
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
+      },
+    };
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        // dispatching an action to like the post/comment(depending on the like type) if the response is obtained successfully
+
+        if (data.success) {
+          if (likeType === 'Post') {
+            dispatch(addLikeToPost(id, userId));
+          } else {
+            dispatch(addLikeToComment(id, userId));
+          }
+        }
+      });
+  };
+}
+
+// defining and exporting the add like to post function
+
+export function addLikeToPost(postId, userId) {
+  return {
+    type: UPDATE_POST_LIKE,
+    postId,
+    userId,
+  };
+}
+
+// defining and exporting the add like to comment function
+
+export function addLikeToComment(commentId, userId) {
+  return {
+    type: UPDATE_COMMENT_LIKE,
+    commentId,
+    userId,
   };
 }

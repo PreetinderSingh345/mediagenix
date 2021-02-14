@@ -32,6 +32,12 @@ class CreatePost extends React.Component {
 
     const { content } = this.state;
 
+    // returning if there is no content
+
+    if (content === '') {
+      return;
+    }
+
     // dispatch an action to post the content
 
     this.props.dispatch(createPost(content));
