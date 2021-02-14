@@ -223,6 +223,7 @@
   margin-right: 5px;
   color: lightcoral;
   transition: color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .post-like-icon:hover {

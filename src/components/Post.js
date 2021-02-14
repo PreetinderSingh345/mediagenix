@@ -10,7 +10,7 @@ import {
   faClock,
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import { createComment } from '../actions/posts';
+import { addLikeToStore, createComment } from '../actions/posts';
 
 // defining and exporting the Post component
 
@@ -75,10 +75,27 @@ class Post extends React.Component {
     }
   };
 
+  // function to handle the case when the like post icon is clicked
+
+  handlePostLike = () => {
+    // getting the data from props
+
+    const { post, user } = this.props;
+
+    // dispatching an action to add the post like to the store
+
+    this.props.dispatch(addLikeToStore(post._id, 'Post', user._id));
+  };
+
   render() {
     // getting the data from props
 
-    const { post, isLoggedIn } = this.props;
+    const { post, isLoggedIn, user } = this.props;
+
+    // finding whether the post is liked or not by the user and deciding the color of the thumbs up icon accordingly
+
+    // const isPostLikedByUser = post.likes.includes(user._id);
+    // const color = isPostLikedByUser ? 'rgb(241, 30, 30)' : 'lightcoral';
 
     // getting the date at which the post was created
 
@@ -125,7 +142,15 @@ class Post extends React.Component {
 
         <div className="post-actions">
           <div className="post-like like-comment">
-            <FontAwesomeIcon icon={faThumbsUp} className="post-like-icon" />
+            <FontAwesomeIcon
+              icon={faThumbsUp}
+              className="post-like-icon"
+              onClick={(event) => this.handlePostLike(event)}
+
+              // style={{
+              //   color: color,
+              // }}
+            />
 
             <div className="post-like-count like-comment-count">
               {post.likes.length}
@@ -175,4 +200,10 @@ class Post extends React.Component {
   }
 }
 
-export default connect()(Post);
+function mapStateToProps({ auth }) {
+  return {
+    user: auth.user,
+  };
+}
+
+export default connect(mapStateToProps)(Post);
