@@ -192,7 +192,12 @@ class Post extends React.Component {
 
         <div className="post-comments-list thin-scrollbar">
           {post.comments.map((comment) => (
-            <Comment comment={comment} key={comment._id} id={comment._id} />
+            <Comment
+              comment={comment}
+              postId={post._id}
+              key={comment._id}
+              id={comment._id}
+            />
           ))}
         </div>
       </div>

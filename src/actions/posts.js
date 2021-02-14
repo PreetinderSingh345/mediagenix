@@ -132,7 +132,7 @@ export function createComment(content, postId) {
 
 // defining and exporting the add like to store function(will be used for both post and comment likes) and we pass to it the id(of post/comment), likeType(post/comment like) and the user id
 
-export function addLikeToStore(id, likeType, userId) {
+export function addLikeToStore(id, likeType, userId, postId) {
   return (dispatch) => {
     // dispatching a post request at the below url to like a post/comment
 
@@ -158,7 +158,7 @@ export function addLikeToStore(id, likeType, userId) {
           if (likeType === 'Post') {
             dispatch(addLikeToPost(id, userId));
           } else {
-            dispatch(addLikeToComment(id, userId));
+            dispatch(addLikeToComment(id, userId, postId));
           }
         }
       });
@@ -177,10 +177,11 @@ export function addLikeToPost(postId, userId) {
 
 // defining and exporting the add like to comment function
 
-export function addLikeToComment(commentId, userId) {
+export function addLikeToComment(commentId, userId, postId) {
   return {
     type: UPDATE_COMMENT_LIKE,
     commentId,
     userId,
+    postId,
   };
 }

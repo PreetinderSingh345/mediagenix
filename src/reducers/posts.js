@@ -72,7 +72,34 @@ export default function posts(state = initialPostsState, action) {
       };
 
     case UPDATE_COMMENT_LIKE:
-    // case to be handled later
+      // adding the id of the user who liked the comment, to the comment's like array
+
+      const updatedPosts2 = state.posts.map((post) => {
+        if (post._id === action.postId) {
+          const updatedComments = post.comments.map((comment) => {
+            if (comment._id === action.commentId) {
+              return {
+                ...comment,
+                likes: [...comment.likes, action.userId],
+              };
+            }
+
+            return comment;
+          });
+
+          return {
+            ...post,
+            comments: updatedComments,
+          };
+        }
+
+        return post;
+      });
+
+      return {
+        ...state,
+        posts: updatedPosts2,
+      };
 
     default:
       return state;

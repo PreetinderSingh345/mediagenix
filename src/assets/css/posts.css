@@ -344,7 +344,20 @@
 /* post comment likes */
 
 .post-comment-likes {
+  color: darkslategrey;
+}
+
+/* post comment like icon */
+
+.post-comment-like-icon {
   color: lightcoral;
+  padding: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.post-comment-like-icon:hover {
+  color: rgb(241, 30, 30);
 }
 
 /* post comment content */
